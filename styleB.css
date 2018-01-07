@@ -1,0 +1,166 @@
+body {
+  background-color: #FFFFFF
+}
+
+h1 {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif, sans-serif;
+  align-content: center;
+}
+h2 {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif, sans-serif;
+  align-content: center
+}
+h4 {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif, sans-serif;
+  align-content: center
+}
+p {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 20px
+}
+
+a {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size:12px;
+}
+ol {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size:14px;
+}
+
+td {
+  background-color: white;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 12px
+}
+
+input {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+button {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 12px;
+  border-radius: 8px;
+  background-color: #00EEFF;
+  border-color: #008799;
+  padding: 3px;
+}
+
+button:hover {
+  padding: 2px;
+  font-size: 13px;
+  background-color: #3CC6E9;
+}
+
+.menuBar {
+  width: 10%;
+  text-align: center;
+}
+.nav {
+  background-color: #5BF2F7;
+  text-align: center;
+}
+
+.lCheck {
+  font-size: 75px;
+}
+
+#attention {
+  color: red;
+  font-size: 15px;
+  font-weight: 600
+}
+
+#toptext {
+  padding-top: 10%
+}
+
+#questionSubmitButton {
+  background-color: #44ff44;
+  font-size: 12px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+#mailtoButton {
+  background-color: #33aa77;
+  font-size: 12px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+#xbutton {
+  background-color: red;
+  border: red;
+  color: white;
+  float: right;
+  border-radius: 40%
+}
+
+#topfixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align: left
+}
+
+/* Dropdown Button */
+.menuBar {
+  background-color: #FF3C00;
+  color: #000000;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  overflow: hidden;
+  position: relative;
+  color: #000000;
+  cursor: pointer;
+  text-decoration: none
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;    
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+}
+
+.container a:hover, .dropdown:hover .dropbtn {
+  background-color: blue;
+  color: white;
+}
+
+.container a, .dropdown .dropbtn {
+  background-color: yellow;
+  color: black;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  right: 0;
+  min-width: 160px;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

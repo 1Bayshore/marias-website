@@ -1,0 +1,337 @@
+<form id="PizzaOrder" onsubmit="findPrice(5)" method="POST" action="https://script.google.com/a/luebke.us/macros/s/AKfycbx5wU3Bu4XLHMUbxArP5IVxIdco7XPKpqn6rgaJDjYUW1s25w/exec">
+  <a class="larga">Student's Name</a>
+  <br>
+  <input type="text" name="studentsName">
+  <br>
+  <a class="larga">Classroom</a>
+<br>
+  <input type="radio" name="classMenu"><a>CH1 (Turtle)</a><br>
+  <input type="radio" name="classMenu"><a>CH2 (Dolphin)</a><br>
+  <input type="radio" name="classMenu"><a>CH3 (Hummingbird)</a><br>
+  <input type="radio" name="classMenu"><a>Intro to CH (Cardinal)</a><br>
+  <input type="radio" name="classMenu"><a>LE1</a><br>
+  <input type="radio" name="classMenu"><a>LE2</a><br>
+  <input type="radio" name="classMenu"><a>UE</a><br>
+  <input type="radio" name="classMenu"><a>MS</a><br>
+  <a class="larga">Pizza Lunch Order</a>
+  <br>
+  <!--<button onclick="repeatOrder(total # of weeks)">
+Apply first week order to all other weeks
+</button>-->
+  <button type="button" onclick="repeatOrder(5)">
+    Apply first week order to all other weeks
+  </button>
+  <table class="lunchOrderTable" border="1">
+    <tr>
+      <td>
+        <a>Date</a>
+      </td>
+      <td>
+        <a>Clear Order</a>
+      </td>
+      <td>
+        <a>Slices Cheese Pizza</a>
+      </td>
+      <td>
+        <a>Slices Pepperoni Pizza</a>
+      </td>
+      <td>
+        <a>Slices Pesto Pizza</a>
+      </td>
+      <td>
+        <a>Applesauce!</a>
+      </td>
+      <td>
+        <a>Pirate's Booty</a>
+      </td>
+      <td>
+        <a>Vegie Straws</a>
+      </td>
+      <td>
+        <a>Animal Crackers</a>
+      </td>
+      <td>
+        <a>Fruit Leather</a>
+      </td>
+      <td>
+        <a>Apple Juice</a>
+      </td>
+      <td>
+        <a>Lemonade</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a>Price:</a>
+      </td>
+      <td><a>$</a></td>
+      <td>
+        <a id="cheesePrice">2.00</a>
+        <input name="cheesePrice" type="hidden" value="2.00"></input>
+      </td>
+      <td>
+        <a id="pepperoniPrice">2.50</a>
+        <input name="pepperoniPrice" type="hidden" value="2.50"></input>
+      </td>
+      <td>
+        <a id="pestoPrice">2.50</a>
+        <input name="pestoPrice" type="hidden" value="2.50"></input>
+      </td>
+      <td>
+        <a id="applesaucePrice">0.90</a>
+        <input name="applesaucePrice" type="hidden" value="0.90"></input>
+      </td>
+      <td>
+        <a id="piratesBootyPrice">1.20</a>
+        <input name="piratesBootyPrice" type="hidden" value="1.20"></input>
+      </td>
+      <td>
+        <a id="vegieStrawsPrice">1.00</a>
+        <input name="vegieStrawsPrice" type="hidden" value="1.00"></input>
+      </td>
+      <td>
+        <a id="animalCrackersPrice">1.00</a>
+        <input name="animalCrackersPrice" type="hidden" value="1.00"></input>
+      </td>
+      <td>
+        <a id="fruitLeatherPrice">1.00</a>
+        <input name="fruitLeatherPrice" type="hidden" value="1.00"></input>
+      </td>
+      <td>
+        <a id="juicePrice">1.00</a>
+        <input name="juicePrice" type="hidden" value="1.00"></input>
+      </td>
+      <td>
+        <a id="lemonadePrice">1.00</a>
+        <input name="lemonadePrice" type="hidden" value="1.00"></input>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a name="row1date">09/07</a>
+      </td>
+      <!-- add disabled="disabled" to disable checkboxes, buttons and inputs on Thursday so parents can only order for dates past that Friday.-->
+      <td>
+        <button type="button" onclick="clearRow(1);">
+          Clear
+        </button>
+      </td>
+      <td>
+        <a>Slices Cheese:</a>
+        <input type="number" value="0" name="row1A">
+      </td>
+      <td>
+        <a>Slices Pepperoni:</a>
+        <input type="number" value="0" name="row1B">
+      </td>
+      <td>
+        <a>Slices Pesto:</a>
+        <input type="number" value="0" name="row1C">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row1checkA">
+      </td>
+      <td>
+      <input type="checkbox" class="lCheck" name="row1checkB">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row1checkC">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row1checkD">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row1checkE">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row1checkF">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row1checkG">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a name="row2date">09/14</a>
+      </td>
+      <td>
+        <button type="button" onclick="clearRow(2)">
+          Clear
+        </button>
+      </td>
+      <td>
+        <a>Slices Cheese:</a>
+        <input type="number" value="0" name="row2A">
+      </td>
+      <td>
+        <a>Slices Pepperoni:</a>
+        <input type="number" value="0" name="row2B">
+      </td>
+      <td>
+        <a>Slices Pesto:</a>
+        <input type="number" value="0" name="row2C">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row2checkA">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row2checkB">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row2checkC">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row2checkD">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row2checkE">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row2checkF">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row2checkG">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a name="row3date">09/21</a>
+      </td>
+      <td>
+        <button type="button" onclick="clearRow(3)">
+          Clear
+        </button>
+      </td>
+      <td>
+        <a>Slices Cheese:</a>
+        <input type="number" value="0" name="row3A">
+      </td>
+      <td>
+        <a>Slices Pepperoni:</a>
+        <input type="number" value="0" name="row3B">
+      </td>
+      <td>
+        <a>Slices Pesto:</a>
+        <input type="number" value="0" name="row3C">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row3checkA">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row3checkB">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row3checkC">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row3checkD">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row3checkE">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row3checkF">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row3checkG">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a name="row4date">09/07</a>
+      </td>
+      <td>
+        <button type="button" onclick="clearRow(4)">
+          Clear
+        </button>
+      </td>
+      <td>
+        <a>Slices Cheese:</a>
+        <input type="number" value="0" name="row4A">
+      </td>
+      <td>
+        <a>Slices Pepperoni:</a>
+        <input type="number" value="0" name="row4B">
+      </td>
+      <td>
+        <a>Slices Pesto:</a>
+        <input type="number" value="0" name="row4C">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row4checkA">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row4checkB">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row4checkC">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row4checkD">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row4checkE">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row4checkF">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row4checkG">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a name="row5date">09/28</a>
+      </td>
+      <td>
+        <button type="button" onclick="clearRow(5)">
+          Clear
+        </button>
+      </td>
+      <td>
+        <a>Slices Cheese:</a>
+        <input type="number" value="0" name="row5A">
+      </td>
+      <td>
+        <a>Slices Pepperoni:</a>
+        <input type="number" value="0" name="row5B">
+      </td>
+      <td>
+        <a>Slices Pesto:</a>
+        <input type="number" value="0" name="row5C">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row5checkA">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row5checkB">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row5checkC">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row5checkD">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row5checkE">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row5checkF">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row5checkG">
+      </td>
+    </tr>
+  </table>
+  <a>Please <b>double-check</b> your order before submiting it!</a>
+  <br>
+  <button class="pizzaFormButton" value="submit">
+    Submit
+  </button>
+  <br>
+</form>
+<a>Your Current Total:</a>
+<br>
+<form name="priceForm">
+  <input type="text" name="pizzaPriceBox" disabled="disabled" class="priceBox" id="pizzaPriceBox"></input>
+</form>

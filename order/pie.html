@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order Pie | Maria's</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <script src="../script.js"></script>
+  <div class="nav" id="topfixed">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="homeButton" href="../1bayshore/218624/" title="Home">
+    <img src="../images/pizza%20logo.jpg" class="menuBar" alt="Maria's logo"/></a>
+    <span class="dropdown">
+      <a class="dropbtn" title="Maria's Pizza" href="../about/pizza-business.html"> <img src="../images/pizza%20logo.jpg" class="menuBar" alt="Maria's logo"/></a>
+      <span class="dropdown-content">
+        <a href="../about/pizza-business.html">About</a>
+        <a href="pizza.html">Order Pizza</a>
+      </span>
+    </span>
+    <span class="dropdown">
+      <a class="dropbtn" title="MS pie business" href="../about/pie-business.html"><img src="../images/pie%20logo.jpg" class="menuBar" alt="Pie Logo"/></a>
+      <span class="dropdown-content">
+        <a href="../about/pie-business.html">About</a>
+        <a href="pie.html">Order Pie</a>
+      </span>
+    </span>
+    <span class="dropdown">
+      <a class="dropbtn" title="Maria's Store" href="../about/marias-store.html"><img src="../images/store%20logo.jpg" class="menuBar" alt="Store Logo"/></a>
+      <span class="dropdown-content">
+        <a href="../about/marias-store.html">About</a>
+        <a href="../featuredproduct.html">Featured Product of the Week</a>
+      </span>
+    </span>
+    <br>
+    <br>
+  </div>
+  <h2 id="toptext">
+    MS Pie bake
+  </h2>
+  <p>The Middle School Pie Bake happens before Thanksgiving. Pick up your pies in time for your Thanksgiving Feast!</p>
+  <p>Enter the pies you would like to get below. Click the "Update Pie Dishes" button to update the number of pie dishes you will need. If you would like to send in your own pie dishes for some or all of the pies, decrease the number of pie dishes accordingly. </p><p style="font-size:14px">
+    Note: Clicking update pie dishes sets the number of pie dishes to the number of necissary pie dishes if you buy them all. If you will bring your own pie dishes, do not click the update pie dishes button after entering the number of pie dishes you are buying.</p>
+  <form id="pieform">
+    <a>Number of Apple Pies</a>
+    <br>
+    <input type="number" name="applepies" value="0">
+    <br>
+    <a>Number of Pumpkin Pies</a>
+    <br>
+    <input type="number" name="pumpkinpies" value="0">
+    <br>
+    <a>Number of Chocolate Chess Pies</a>
+    <br>
+    <input type="number" name="chocopies" value="0">
+    <br>
+    <button type="button" onclick="pieform.piedishes.value = (parseInt(pieform.chocopies.value,10) + parseInt(pieform.pumpkinpies.value,10) + parseInt(pieform.applepies.value,10))">
+      Update Pie Dishes
+    </button>
+    <br>
+    <a>Number of Pie Dishes</a>
+    <br>
+    <input type="number" name="piedishes">
+    <br>
+    <button type="submit" onclick="pieWrite(pieform.applepies.value,pieform.pumpkinpies.value,pieform.chocopies.value,pieform.piedishes.value);">
+      Submit
+    </button>
+  </form>
+  
+  <div class="nav">
+  <h4>
+    Maria's Businesses
+  </h4>
+  <ol>
+    <li><a href="../about/pizza-business.html" style="font-size:18px">Maria's Pizza</a></li>
+    <li><a href="../about/marias-store.html" style="font-size:18px">Maria's Store</a></li>
+    <li><a href="../about/pie-business.html" style="font-size:18px">MS Pie Business</a></li>
+  </ol>
+  </div>
+</body>
+</html>

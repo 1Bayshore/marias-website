@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Maria's | Maria's</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js"></script>
+  </head>
+  <body>
+    <div class="nav">
+      <div class="menu" id="menu">
+        <div class="homeButton">
+          <a href="../">Home</a>
+        </div>
+        <div class="main">
+          <a href="../about/pizza-business.html">Maria's Pizza</a>
+        </div>
+        <div class="menuSmallerTexta">
+          <a href="../about/pizza-business.html">&nbsp;&nbsp;About</a>
+        </div>
+        <div class="menuSmallerTextb">
+          <a id="currentlySelected" href="pizza.html">&nbsp;&nbsp;Order Pizza</a>
+        </div>
+        <div class="main">
+          <a href="../about/pie-business.html">MS Pie Business</a>
+        </div>
+        <div class="menuSmallerTexta">
+          <a href="../about/pie-business.html">&nbsp;&nbsp;About</a>
+        </div>
+        <div class="menuSmallerTextb">
+          <a href="pie.html">&nbsp;&nbsp;Order Pie</a>
+        </div>
+        <div class="main">
+          <a href="../about/marias-store.html">Maria's Store</a>
+        </div>
+        <div class="menuSmallerTexta">
+          <a href="../about/marias-store">&nbsp;&nbsp;About</a>
+        </div>
+        <div class="menuSmallerTextb">
+          <a href="../featuredproduct.html">&nbsp;&nbsp;Featured Product<br>&nbsp;&nbsp;&nbsp;of the Week</a>
+        </div>
+      </div>
+      <button class="menuExpand" type="button" onclick="document.getElementById('menu').style.display = 'block';">
+        Menu
+      </button>
+    </div>
+    <h2 id="toptext">
+      Order Pizza
+    </h2>
+    <p>We are experiencing teporary issues. Please come back another time.</p>
+    <form id="PizzaOrder" action="process.php" method="get">
+      <a class="larga">Student's Name</a>
+      <br>
+      <input type="text">
+      <br>
+      <a class="larga">Classroom</a>
+      <br>
+      <input type="radio" name="classMenu"><a>CH1 (Turtle)</a><br>
+      <input type="radio" name="classMenu"><a>CH2 (Dolphin)</a><br>
+      <input type="radio" name="classMenu"><a>CH3 (Hummingbird)</a><br>
+      <input type="radio" name="classMenu"><a>Intro to CH (Cardinal)</a><br>
+      <input type="radio" name="classMenu"><a>LE1</a><br>
+      <input type="radio" name="classMenu"><a>LE2</a><br>
+      <input type="radio" name="classMenu"><a>UE</a><br>
+      <input type="radio" name="classMenu"><a>MS</a><br>
+      <a class="larga">Pizza Lunch Order</a>
+      <br>
+      <!--<button onclick="repeatOrder(total # of weeks)">
+Apply first week order to all other weeks
+</button>-->
+      <button type="button" onclick="repeatOrder(5)">
+        Apply first week order to all other weeks
+      </button>
+      <input type="radio" name="weekChoice" onchange="document.getElementById(week1order).style='display:inline';"><a>Week 1&nbsp;</a>
+      <input type="radio" name="weekChoice" onchange="document.getElementById(week2order).style='display:inline';"><a>Week 2&nbsp;</a>
+      <input type="radio" name="weekChoice" onchange="document.getElementById(week3order).style='display:inline';"><a>Week 3&nbsp;</a>
+      <input type="radio" name="weekChoice" onchange="document.getElementById(week4order).style='display:inline';"><a>Week 4&nbsp;</a>
+      <input type="radio" name="weekChoice" onchange="document.getElementById(week5order).style='display:inline';"><a>Week 5&nbsp;</a>
+      <!--Add more rows as necisssary...-->
+      <button type="button" onclick="document.getElementById(week1order).style='display:inline';document.getElementById(week2order).style='display:none';document.getElementById(week3order).style='display:none';document.getElementById(week4order).style='display:none';document.getElementById(week5order).style='display:none'">Week 1</button>
+      <button type="button" onclick="document.getElementById(week2order).style='display:inline';document.getElementById(week1order).style='display:none';document.getElementById(week3order).style='display:none';document.getElementById(week4order).style='display:none';document.getElementById(week5order).style='display:none'">Week 2</button>
+      <div id="week1order">
+        <button onclick="clearDiv(1)">
+          Clear
+        </button>
+        <br>
+        <a>Slices Cheese:</a>
+        <input type="radio" name="row1Ar" value="0" onchange="document.getElementById('row1A').value = 0"><a>0</a>
+        <input type="radio" name="row1Ar" value="1" onchange="document.getElementById('row1A').value = 1"><a>1</a>
+        <input type="radio" name="row1Ar" value="2" onchange="document.getElementById('row1A').value = 2"><a>2</a>
+        <input type="radio" name="row1Ar" value="3" onchange="document.getElementById('row1A').value = 3"><a>3</a>
+        <button type="button" onclick="PizzaOrder.row1A.value = 1">1</button>
+        <a>Other: </a><input type="number" name="row1A">
+      </div>
+      <table class="lunchOrderTable" border="1">
+        <tr>
+          <td>
+            <a>Date</a>
+          </td>
+          <td>
+            <a>Clear Order</a>
+          </td>
+          <td>
+            <a>Slices Cheese Pizza</a>
+          </td>
+          <td>
+            <a>Slices Pepperoni Pizza</a>
+          </td>
+          <td>
+            <a>Slices Pesto Pizza</a>
+          </td>
+          <td>
+            <a id="attention">Applesauce!</a>
+          </td>
+          <td>
+            <a>Pirate's Booty</a>
+          </td>
+          <td>
+            <a>Vegie Straws</a>
+          </td>
+          <td>
+            <a>Animal Crackers</a>
+          </td>
+          <td>
+            <a>Fruit Leather</a>
+          </td>
+          <td>
+            <a>Milk</a>
+          </td>
+          <td>
+            <a>Juice</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a>Price:</a>
+          </td>
+          <td><a>$</a></td>
+          <td>
+            <a name="cheesePrice">2.00</a>
+          </td>
+          <td>
+            <a name="pepperoniPrice">2.50</a>
+          </td>
+          <td>
+            <a name="pestoPrice">2.50</a>
+          </td>
+          <td>
+            <a name="applesacuePrice">0.90</a>
+          </td>
+          <td>
+            <a name="piratesBootyPrice">1.20</a>
+          </td>
+          <td>
+            <a name="vegieStrawsPrice">1.00</a>
+          </td>
+          <td>
+            <a name="animalCrackersPrice">1.00</a>
+          </td>
+          <td>
+            <a name="fruitLeatherPrice">1.00</a>
+          </td>
+          <td>
+            <a name="milkPrice">1.80</a>
+          </td>
+          <td>
+            <a name="juicePrice">1.00</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a name="row1date">09/07</a>
+          </td>
+          <td>
+            <button type="button" onclick="clearRow(1)">
+              Clear
+            </button>
+          </td>
+          <td>
+            <a>Slices Cheese:</a>
+            <input type="number" value="0" name="row1A">
+          </td>
+          <td>
+            <a>Slices Pepperoni:</a>
+            <input type="number" value="0" name="row1B">
+          </td>
+          <td>
+            <a>Slices Pesto:</a>
+            <input type="number" value="0" name="row1C">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row1checkA">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row1checkB">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row1checkC">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row1checkD">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row1checkE">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row1checkF">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row1checkG">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a name="row2date">09/14</a>
+          </td>
+          <td>
+            <button type="button" onclick="clearRow(2)">
+              Clear
+            </button>
+          </td>
+          <td>
+            <a>Slices Cheese:</a>
+            <input type="number" value="0" name="row2A">
+          </td>
+          <td>
+            <a>Slices Pepperoni:</a>
+            <input type="number" value="0" name="row2B">
+          </td>
+          <td>
+            <a>Slices Pesto:</a>
+            <input type="number" value="0" name="row2C">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row2checkA">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row2checkB">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row2checkC">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row2checkD">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row2checkE">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row2checkF">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row2checkG">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a name="row3date">09/21</a>
+          </td>
+          <td>
+            <button type="button" onclick="clearRow(3)">
+              Clear
+            </button>
+          </td>
+          <td>
+            <a>Slices Cheese:</a>
+            <input type="number" value="0" name="row3A">
+          </td>
+          <td>
+            <a>Slices Pepperoni:</a>
+            <input type="number" value="0" name="row3B">
+          </td>
+          <td>
+            <a>Slices Pesto:</a>
+            <input type="number" value="0" name="row3C">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row3checkA">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row3checkB">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row3checkC">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row3checkD">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row3checkE">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row3checkF">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row3checkG">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a name="row4date">09/07</a>
+          </td>
+          <td>
+            <button type="button" onclick="clearRow(4)">
+              Clear
+            </button>
+          </td>
+          <td>
+            <a>Slices Cheese:</a>
+            <input type="number" value="0" name="row4A">
+          </td>
+          <td>
+            <a>Slices Pepperoni:</a>
+            <input type="number" value="0" name="row4B">
+          </td>
+          <td>
+            <a>Slices Pesto:</a>
+            <input type="number" value="0" name="row4C">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row4checkA">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row4checkB">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row4checkC">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row4checkD">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row4checkE">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row4checkF">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row4checkG">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a name="row5date">09/28</a>
+          </td>
+          <td>
+            <button type="button" onclick="clearRow(5)">
+              Clear
+            </button>
+          </td>
+          <td>
+            <a>Slices Cheese:</a>
+            <input type="number" value="0" name="row5A">
+          </td>
+          <td>
+            <a>Slices Pepperoni:</a>
+            <input type="number" value="0" name="row5B">
+          </td>
+          <td>
+            <a>Slices Pesto:</a>
+            <input type="number" value="0" name="row5C">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row5checkA">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row5checkB">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row5checkC">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row5checkD">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row5checkE">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row5checkF">
+          </td>
+          <td>
+            <input type="checkbox" class="lCheck" name="row5checkG">
+          </td>
+        </tr>
+      </table>
+      <a>Email Address (Required)</a>
+      <br>
+      <input type="email">
+      <br>
+      <a>Please <b>double-check</b> your order before submiting it!</a>
+      <br>
+      <button class="pizzaFormButton" value="submit">
+        Submit
+      </button>
+      <br>
+    </form>
+    <a href="#" onclick="window.open('payfororder.html', 'newwindow', 'width=400, height=450'); return false;">Click here to pay</a>
+  </body>
+</html>
