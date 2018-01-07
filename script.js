@@ -68,48 +68,53 @@ Apply first week order to all other weeks
       <td><a>$</a></td>
       <td>
         <a id="cheesePrice">2.00</a>
-        <input name="cheesePrice" type="hidden" value="2.00"></input>
+        <input name="cheesePrice" type="hidden" value="2.00">
       </td>
       <td>
         <a id="pepperoniPrice">2.50</a>
-        <input name="pepperoniPrice" type="hidden" value="2.50"></input>
+        <input name="pepperoniPrice" type="hidden" value="2.50">
       </td>
       <td>
         <a id="pestoPrice">2.50</a>
-        <input name="pestoPrice" type="hidden" value="2.50"></input>
+        <input name="pestoPrice" type="hidden" value="2.50">
       </td>
       <td>
-        <a id="applesaucePrice">0.90</a>
-        <input name="applesaucePrice" type="hidden" value="0.90"></input>
+        <a id="applesaucePrice">1.50</a>
+        <input name="applesaucePrice" type="hidden" value="1.50">
       </td>
       <td>
         <a id="piratesBootyPrice">1.20</a>
-        <input name="piratesBootyPrice" type="hidden" value="1.20"></input>
+        <input name="piratesBootyPrice" type="hidden" value="1.20">
       </td>
       <td>
         <a id="vegieStrawsPrice">1.00</a>
-        <input name="vegieStrawsPrice" type="hidden" value="1.00"></input>
+        <input name="vegieStrawsPrice" type="hidden" value="1.00">
       </td>
       <td>
-        <a id="animalCrackersPrice">1.00</a>
-        <input name="animalCrackersPrice" type="hidden" value="1.00"></input>
+        <a id="animalCrackersPrice">1.50</a>
+        <input name="animalCrackersPrice" type="hidden" value="1.50">
       </td>
       <td>
         <a id="fruitLeatherPrice">1.00</a>
-        <input name="fruitLeatherPrice" type="hidden" value="1.00"></input>
+        <input name="fruitLeatherPrice" type="hidden" value="1.00">
       </td>
       <td>
-        <a id="juicePrice">1.00</a>
-        <input name="juicePrice" type="hidden" value="1.00"></input>
+        <a id="juicePrice">1.50</a>
+        <input name="juicePrice" type="hidden" value="1.50">
       </td>
       <td>
-        <a id="lemonadePrice">1.00</a>
-        <input name="lemonadePrice" type="hidden" value="1.00"></input>
+        <a id="lemonadePrice">1.50</a>
+        <input name="lemonadePrice" type="hidden" value="1.50">
+      </td>
+      <td>
+        <a id="garlicKnotPrice">2.00</a>
+        <input name="garlicKnotPrice" type="hidden" value="2.00">
       </td>
     </tr>
     <tr>
       <td>
-        <a name="row1date">09/07</a>
+        <a>09/07</a>
+        <input name="row1date" type="hidden" value="09/07">
       </td>
       <!-- add disabled="disabled" to disable checkboxes, buttons and inputs on Thursday so parents can only order for dates past that Friday.-->
       <td>
@@ -150,10 +155,14 @@ Apply first week order to all other weeks
       <td>
         <input type="checkbox" class="lCheck" name="row1checkG">
       </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row1checkH">
+      </td>
     </tr>
     <tr>
       <td>
-        <a name="row2date">09/14</a>
+        <a>09/14</a>
+        <input type="hidden" value="09/14" name="row2date">
       </td>
       <td>
         <button type="button" onclick="clearRow(2)">
@@ -193,10 +202,14 @@ Apply first week order to all other weeks
       <td>
         <input type="checkbox" class="lCheck" name="row2checkG">
       </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row2checkH">
+      </td>
     </tr>
     <tr>
       <td>
-        <a name="row3date">09/21</a>
+        <a>09/21</a>
+        <input type="hidden" name="row3date" value="09/21">
       </td>
       <td>
         <button type="button" onclick="clearRow(3)">
@@ -236,10 +249,14 @@ Apply first week order to all other weeks
       <td>
         <input type="checkbox" class="lCheck" name="row3checkG">
       </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row3checkH">
+      </td>
     </tr>
     <tr>
       <td>
-        <a name="row4date">09/07</a>
+        <a>09/28</a>
+        <input type="hidden" name="row4date" value="09/28">
       </td>
       <td>
         <button type="button" onclick="clearRow(4)">
@@ -279,10 +296,14 @@ Apply first week order to all other weeks
       <td>
         <input type="checkbox" class="lCheck" name="row4checkG">
       </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row4checkH">
+      </td>
     </tr>
     <tr>
       <td>
-        <a name="row5date">09/28</a>
+        <a>10/05</a>
+        <input type="hidden" value="10/05" name="row5date">
       </td>
       <td>
         <button type="button" onclick="clearRow(5)">
@@ -321,6 +342,9 @@ Apply first week order to all other weeks
       </td>
       <td>
         <input type="checkbox" class="lCheck" name="row5checkG">
+      </td>
+      <td>
+        <input type="checkbox" class="lCheck" name="row5checkH">
       </td>
     </tr>
   </table>
