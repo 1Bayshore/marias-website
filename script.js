@@ -14,7 +14,7 @@ var PIZZA_FORM_CODE = `
   <input type="radio" onclick="updateClassroomValue()" id="cls6" name="classMenu" value="LE2"><a>LE2</a><br>
   <input type="radio" onclick="updateClassroomValue()" id="cls7" name="classMenu" value="UE"><a>UE</a><br>
   <input type="radio" onclick="updateClassroomValue()" id="cls8" name="classMenu" value="MS"><a>MS</a><br>
-  <input type="text" id="classroom" name="classroom">
+  <input type="hidden" id="classroom" name="classroom">
   <a class="larga">Pizza Lunch Order</a>
   <br>
   <!--<button onclick="repeatOrder(total # of weeks)">
