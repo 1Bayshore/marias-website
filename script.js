@@ -41,7 +41,7 @@ Apply first week order to all other weeks
         <a>Slices Pesto Pizza</a>
       </td>
       <td>
-        <a>Applesauce!</a>
+        <a>Applesauce</a>
       </td>
       <td>
         <a>Pirate's Booty</a>
@@ -60,6 +60,9 @@ Apply first week order to all other weeks
       </td>
       <td>
         <a>Lemonade</a>
+      </td>
+      <td>
+        <a>Garlic Knot</a>
       </td>
     </tr>
     <tr>
@@ -349,7 +352,7 @@ Apply first week order to all other weeks
       </td>
     </tr>
   </table>
-  <input type="hidden" onload="document.getElementById('emailInput').value = getCookie('email')" id="emailInput" name="email">
+  <input type="hidden" id="emailInput" name="email">
   <a>Please <b>double-check</b> your order before submiting it!</a>
   <br>
   <button class="pizzaFormButton" value="submit">
@@ -509,17 +512,20 @@ function getCookie(cname) {
 function checkCookie() {
   var email_val = getCookie("email");
   if (email_val !== undefined && email_val !== null) {
-    document.getElementById("googleFormHolder").innerHTML = PIZZA_FORM_CODE;
+    loadForm(email_val);
   }
 }
 
 function loadForm(email_val) {
   if (checkEmailInvoice(email_val)) {
-    var checked = true
+    var checked = true;
   }
   else {
     setCookie("email", email_val, 1);
     document.getElementById("googleFormHolder").innerHTML = PIZZA_FORM_CODE;
+    console.log('Email val: ' + email_val);
+    document.getElementById('emailInput').value = email_val;
+
     //("<iframe style ='border: none;' width=50% height=500px src=https://docs.google.com/a/luebke.us/forms/d/e/1FAIpQLSeLN67cNKxAPe8c1pdC36rfhph1OKX-mAg0X6pdRt2wuXbLGA/viewform?emailAddress=" + email_val + "></iframe><div id='orderOrPay'><br><a>Your Current Total:</a><input type='text' id='price' class='priceBox' disabled='disabled' value='$0.00'><br><button type='button' onclick='location.reload()'>Place another order</button><button type='button' onclick='openPayment(price)'>Pay for your order now</button></div>");
   }
 }

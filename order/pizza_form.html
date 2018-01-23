@@ -13,7 +13,7 @@
   <input type="radio" onclick="updateClassroomValue()" id="cls6" name="classMenu" value="LE2"><a>LE2</a><br>
   <input type="radio" onclick="updateClassroomValue()" id="cls7" name="classMenu" value="UE"><a>UE</a><br>
   <input type="radio" onclick="updateClassroomValue()" id="cls8" name="classMenu" value="MS"><a>MS</a><br>
-  <input type="text" id="classroom" name="classroom">
+  <input type="hidden" id="classroom" name="classroom">
   <a class="larga">Pizza Lunch Order</a>
   <br>
   <!--<button onclick="repeatOrder(total # of weeks)">
@@ -40,7 +40,7 @@ Apply first week order to all other weeks
         <a>Slices Pesto Pizza</a>
       </td>
       <td>
-        <a>Applesauce!</a>
+        <a>Applesauce</a>
       </td>
       <td>
         <a>Pirate's Booty</a>
@@ -59,6 +59,9 @@ Apply first week order to all other weeks
       </td>
       <td>
         <a>Lemonade</a>
+      </td>
+      <td>
+        <a>Garlic Knot</a>
       </td>
     </tr>
     <tr>
@@ -348,7 +351,7 @@ Apply first week order to all other weeks
       </td>
     </tr>
   </table>
-  <input type="hidden" onload="document.getElementById('emailInput').value = getCookie('email')" id="emailInput" name="email">
+  <input type="hidden" id="emailInput" name="email">
   <a>Please <b>double-check</b> your order before submiting it!</a>
   <br>
   <button class="pizzaFormButton" value="submit">
