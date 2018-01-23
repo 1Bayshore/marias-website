@@ -5,14 +5,15 @@
   <br>
   <a class="larga">Classroom</a>
 <br>
-  <input type="radio" name="classMenu"><a>CH1 (Turtle)</a><br>
-  <input type="radio" name="classMenu"><a>CH2 (Dolphin)</a><br>
-  <input type="radio" name="classMenu"><a>CH3 (Hummingbird)</a><br>
-  <input type="radio" name="classMenu"><a>Intro to CH (Cardinal)</a><br>
-  <input type="radio" name="classMenu"><a>LE1</a><br>
-  <input type="radio" name="classMenu"><a>LE2</a><br>
-  <input type="radio" name="classMenu"><a>UE</a><br>
-  <input type="radio" name="classMenu"><a>MS</a><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls1" name="classMenu" value="CH1 (Turtle)"><a>CH1 (Turtle)</a><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls2" name="classMenu" value="CH2 (Dolphin)"><a>CH2 (Dolphin)</a><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls3" name="classMenu" value="CH3 (Hummingbird)"><a>CH3 (Hummingbird)</a><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls4" name="classMenu" value="CH4 (Cardinal)"><a>CH4 (Cardinal)</a><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls5" name="classMenu" value="LE1"><a>LE1</a><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls6" name="classMenu" value="LE2"><a>LE2</a><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls7" name="classMenu" value="UE"><a>UE</a><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls8" name="classMenu" value="MS"><a>MS</a><br>
+  <input type="text" id="classroom" name="classroom">
   <a class="larga">Pizza Lunch Order</a>
   <br>
   <!--<button onclick="repeatOrder(total # of weeks)">
