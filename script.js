@@ -442,10 +442,11 @@ function repeatOrder(rows)  {
 }
 
 function findPrice(rows)  {
-  var keepGoing = confirm("Submiting your order for " + PizzaOrder.studentsName.value + ".");
-  if (keepGoing === false) {
-    return
-  }
+//  var keepGoing = confirm("Submiting your order for " + PizzaOrder.studentsName.value + ".");
+//  if (keepGoing === false) {
+//    window.open('localhost:8000/order/pizza.html', '_top')
+//    return
+//  }
   var loopRows = rows + 1;
   var price = 0;
   for (i = 1; i < loopRows; i++) {
@@ -483,7 +484,7 @@ function findPrice(rows)  {
     }
   }
   var oldPrice = getCookie('price');
-  setCookie("price", price, 10)
+  setCookie("price", price+oldPrice, 10)
 }
 
 function setCookie(cname, cvalue, exdays) {
