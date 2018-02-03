@@ -41,25 +41,25 @@ Apply first week order to all other weeks
         <a>Slices Pesto Pizza</a>
       </td>
       <td>
-        <a>Applesauce</a>
-      </td>
-      <td>
         <a>Pirate's Booty</a>
       </td>
       <td>
-        <a>Vegie Straws</a>
+        <a>Veggie Straws</a>
       </td>
       <td>
         <a>Animal Crackers</a>
       </td>
       <td>
+        <a>Applesauce</a>
+      </td>
+      <td>
         <a>Fruit Leather</a>
       </td>
       <td>
-        <a>Apple Juice</a>
+        <a>Lemonade</a>
       </td>
       <td>
-        <a>Lemonade</a>
+        <a>Apple Juice</a>
       </td>
       <td>
         <a>Garlic Knot</a>
@@ -83,32 +83,32 @@ Apply first week order to all other weeks
         <input name="pestoPrice" type="hidden" value="2.50">
       </td>
       <td>
-        <a id="applesaucePrice">1.50</a>
-        <input name="applesaucePrice" type="hidden" value="1.50">
+        <a id="piratesBootyPrice">1.50</a>
+        <input name="piratesBootyPrice" type="hidden" value="1.50">
       </td>
       <td>
-        <a id="piratesBootyPrice">1.20</a>
-        <input name="piratesBootyPrice" type="hidden" value="1.20">
-      </td>
-      <td>
-        <a id="vegieStrawsPrice">1.00</a>
-        <input name="vegieStrawsPrice" type="hidden" value="1.00">
+        <a id="veggieStrawsPrice">1.00</a>
+        <input name="veggieStrawsPrice" type="hidden" value="1.00">
       </td>
       <td>
         <a id="animalCrackersPrice">1.50</a>
         <input name="animalCrackersPrice" type="hidden" value="1.50">
       </td>
       <td>
+        <a id="applesaucePrice">1.50</a>
+        <input name="applesaucePrice" type="hidden" value="1.50">
+      </td>
+      <td>
         <a id="fruitLeatherPrice">1.00</a>
         <input name="fruitLeatherPrice" type="hidden" value="1.00">
       </td>
       <td>
-        <a id="juicePrice">1.50</a>
-        <input name="juicePrice" type="hidden" value="1.50">
-      </td>
-      <td>
         <a id="lemonadePrice">1.50</a>
         <input name="lemonadePrice" type="hidden" value="1.50">
+      </td>
+      <td>
+        <a id="appleJuicePrice">1.50</a>
+        <input name="appleJuicePrice" type="hidden" value="1.50">
       </td>
       <td>
         <a id="garlicKnotPrice">2.00</a>
@@ -422,6 +422,7 @@ function clearRow(row)  {
   eval("PizzaOrder.row" + row + "checkE.checked = false;")
   eval("PizzaOrder.row" + row + "checkF.checked = false;")
   eval("PizzaOrder.row" + row + "checkG.checked = false;")
+  eval("PizzaOrder.row" + row + "checkH.checked = false;")
 
 }
 
@@ -438,6 +439,7 @@ function repeatOrder(rows)  {
          eval("PizzaOrder.row" + i + "checkE.checked = PizzaOrder.row1checkE.checked");
          eval("PizzaOrder.row" + i + "checkF.checked = PizzaOrder.row1checkF.checked");
          eval("PizzaOrder.row" + i + "checkG.checked = PizzaOrder.row1checkG.checked");
+         eval("PizzaOrder.row" + i + "checkH.checked = PizzaOrder.row1checkH.checked");
     }
 }
 
@@ -456,19 +458,19 @@ function findPrice(rows)  {
     var checked = false
     eval("checked = PizzaOrder.row" + i + "checkA.checked");
     if (checked)  {
-      price = price + Number(PizzaOrder.applesaucePrice.value);
+      price = price + Number(PizzaOrder.piratesBootyPrice.value);
     }
     eval("checked = PizzaOrder.row" + i + "checkB.checked");
     if (checked)  {
-      price = price + Number(PizzaOrder.piratesBootyPrice.value);
+      price = price + Number(PizzaOrder.veggieStrawsPrice.value);
     }
     eval("checked = PizzaOrder.row" + i + "checkC.checked");
     if (checked)  {
-      price = price + Number(PizzaOrder.vegieStrawsPrice.value);
+      price = price + Number(PizzaOrder.animalCrackersPrice.value);
     }
     eval("checked = PizzaOrder.row" + i + "checkD.checked");
     if (checked)  {
-      price = price + Number(PizzaOrder.animalCrackersPrice.value);
+      price = price + Number(PizzaOrder.applesaucePrice.value);
     }
     eval("checked = PizzaOrder.row" + i + "checkE.checked");
     if (checked)  {
@@ -476,15 +478,26 @@ function findPrice(rows)  {
     }
     eval("checked = PizzaOrder.row" + i + "checkF.checked");
     if (checked)  {
-      price = price + Number(PizzaOrder.juicePrice.value);
+      price = price + Number(PizzaOrder.lemonadePrice.value);
     }
     eval("checked = PizzaOrder.row" + i + "checkG.checked");
     if (checked)  {
-      price = price + Number(PizzaOrder.lemonadePrice.value);
+      price = price + Number(PizzaOrder.appleJuicePrice.value);
+    }
+    eval("checked = PizzaOrder.row" + i + "checkH.checked");
+    if (checked)  {
+      price = price + Number(PizzaOrder.garlicKnotPrice.value);
     }
   }
-  var oldPrice = getCookie('price');
-  setCookie("price", price+oldPrice, 10)
+  price_val = getCookie('price')
+  if (price_val !== undefined && price_val !== null) {
+    var oldPrice = Number(price_val);
+  }
+  else {
+    var oldPrice = 0.0;
+  }
+  var newPrice = Number(price);
+  setCookie("price", newPrice+oldPrice, 10)
 }
 
 function setCookie(cname, cvalue, exdays) {
