@@ -497,12 +497,12 @@ function findPrice(rows)  {
     var oldPrice = 0.0;
   }
   var newPrice = Number(price);
-  setCookie("price", newPrice+oldPrice, 10)
+  setCookie("price", newPrice+oldPrice, 5)
 }
 
-function setCookie(cname, cvalue, exdays) {
+function setCookie(cname, cvalue, exminutes) {
   var d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  d.setTime(d.getTime() + (exminutes*60*1000));
   var expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
@@ -535,7 +535,8 @@ function loadForm(email_val) {
     var checked = true;
   }
   else {
-    setCookie("email", email_val, 1);
+    setCookie("email", email_val, 5);
+    setCookie("prevEmail", email_val, 360*24*60);
     document.getElementById("googleFormHolder").innerHTML = PIZZA_FORM_CODE;
     console.log('Email val: ' + email_val);
     document.getElementById('emailInput').value = email_val;
@@ -602,7 +603,6 @@ function loadFromCookies() {
 }
 
 function openPayment(price) {
-  setCookie('price', price, 1.0/288.0);
   window.open('../payfororder/index.html','newwindow');
 }
 
