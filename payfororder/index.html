@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pay for your order</title>
   <link rel="stylesheet" href="../style.css">
+  <script src="../script.js"></script>
 </head>
-<body onload="loadPaymentFromCookies()">
+<body onload="loadPriceFromCookies()">
   <button id="xbutton" onclick="javascript: window.close()">
     x
   </button>
@@ -26,8 +27,8 @@
       <input type="hidden" id="paypalPrice_secure" name="amount" value="1.00">
       <input type="hidden" id="emailOrderNumber" name="custom" value="[email],[OrderNumber]">
       <!-- must update in location change -->
-      <input type="hidden" name="return" value="file:///Volumes/Luebke%20Drive/Maria's%20Website/payfororder/sucess.html">
-      <input type="hidden" name="cancel_return" value="file:///Volumes/Luebke%20Drive/Maria's%20Website/payfororder/canceled.html">
+      <input type="hidden" name="return" value="http://localhost:8000/payfororder/sucess.html">
+      <input type="hidden" name="cancel_return" value="http://localhost:8000/payfororder/canceled.html">
       <input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but06.gif" name="submit" alt="Click to make payment with PayPal - it's fast, free and secure!">
     </form>
   </div>

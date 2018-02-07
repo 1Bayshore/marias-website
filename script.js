@@ -551,6 +551,10 @@ function loadForm(email_val) {
   }
 }
 
+function updateSucess() {
+  setCookie("price", 0, 0);
+}
+
 function getScript(source, callback) {
   var script = document.createElement('script');
   var prior = document.getElementsByTagName('script')[0];
@@ -600,7 +604,7 @@ function loadPriceFromUrl() {
   document.getElementById("paypalPrice_secure").innerHTML = price
 }
 
-function loadFromCookies() {
+function loadPriceFromCookies() {
   var price = getCookie('price');
   document.getElementById('pizzaPriceBox').value = '$' + price;
   document.getElementById('paypalPrice_secure').value = price;
