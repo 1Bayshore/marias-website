@@ -356,7 +356,10 @@ Apply first week order to all other weeks
   <a>Please <b>double-check</b> your order before submiting it!</a>
   <br>
   <button class="pizzaFormButton" value="submit">
-    Submit
+    Submit and Continue Shopping
+  </button>
+  <button class="pizzaFormButton" value="submit" onclick="setCookie('payOnReturn', true, 0.5)">
+    Submit and Pay
   </button>
   <br>
 </form>
@@ -531,6 +534,9 @@ function checkCookie() {
 }
 
 function loadForm(email_val) {
+  if (getCookie('payOnReturn') !== undefined && getCookie('payOnReturn') !== null) {
+    window.open('../payfororder/index.html','newwindow', 'width=300px, height=500px');
+  }
   if (checkEmailInvoice(email_val)) {
     var checked = true;
   }

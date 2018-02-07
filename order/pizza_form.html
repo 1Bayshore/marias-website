@@ -355,7 +355,10 @@ Apply first week order to all other weeks
   <a>Please <b>double-check</b> your order before submiting it!</a>
   <br>
   <button class="pizzaFormButton" value="submit">
-    Submit
+    Submit and Continue Shopping
+  </button>
+  <button class="pizzaFormButton" value="submit" onclick="setCookie('payOnReturn', true, 0.5)">
+    Submit and Pay
   </button>
   <br>
 </form>
