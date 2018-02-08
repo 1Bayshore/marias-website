@@ -535,7 +535,11 @@ function checkCookie() {
 
 function loadForm(email_val) {
   if (getCookie('payOnReturn') !== undefined && getCookie('payOnReturn') !== null) {
-    window.open('../payfororder/index.html','newwindow', 'width=300px, height=500px');
+    var newWin = openPayment();
+    if(!newWin || newWin.closed || typeof newWin.closed=='undefined') {
+      coverWindow('<p>To continue to PayPal, please click below:<br><a href="#" onclick="openPayment()">PayPal</a></p>')
+    }
+    //setCookie('price', 0, 0);
   }
   if (checkEmailInvoice(email_val)) {
     var checked = true;
@@ -549,10 +553,6 @@ function loadForm(email_val) {
 
     //("<iframe style ='border: none;' width=50% height=500px src=https://docs.google.com/a/luebke.us/forms/d/e/1FAIpQLSeLN67cNKxAPe8c1pdC36rfhph1OKX-mAg0X6pdRt2wuXbLGA/viewform?emailAddress=" + email_val + "></iframe><div id='orderOrPay'><br><a>Your Current Total:</a><input type='text' id='price' class='priceBox' disabled='disabled' value='$0.00'><br><button type='button' onclick='location.reload()'>Place another order</button><button type='button' onclick='openPayment(price)'>Pay for your order now</button></div>");
   }
-}
-
-function updateSucess() {
-  setCookie("price", 0, 0);
 }
 
 function getScript(source, callback) {
@@ -610,10 +610,12 @@ function loadPriceFromCookies() {
   document.getElementById('paypalPrice_secure').value = price;
   var email = getCookie('email');
   document.getElementById('emailOrderNumber').value = email + "," + Date.now().toString();
+  setCookie('price', 0, 0);
 }
 
-function openPayment(price) {
-  window.open('../payfororder/index.html','newwindow');
+function openPayment() {
+  var newWin = window.open('../payfororder/index.html','newwindow', 'width=300px, height=500px');
+  return newWin;
 }
 
 /*
