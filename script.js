@@ -128,39 +128,39 @@ Apply first week order to all other weeks
       </td>
       <td>
         <a>Slices Cheese:</a>
-        <input type="number" value="0" name="row1A">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row1A">
       </td>
       <td>
         <a>Slices Pepperoni:</a>
-        <input type="number" value="0" name="row1B">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row1B">
       </td>
       <td>
         <a>Slices Pesto:</a>
-        <input type="number" value="0" name="row1C">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row1C">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row1checkA">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkA">
       </td>
       <td>
-      <input type="checkbox" class="lCheck" name="row1checkB">
+      <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkB">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row1checkC">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkC">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row1checkD">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkD">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row1checkE">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkE">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row1checkF">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkF">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row1checkG">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkG">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row1checkH">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkH">
       </td>
     </tr>
     <tr>
@@ -175,39 +175,39 @@ Apply first week order to all other weeks
       </td>
       <td>
         <a>Slices Cheese:</a>
-        <input type="number" value="0" name="row2A">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row2A">
       </td>
       <td>
         <a>Slices Pepperoni:</a>
-        <input type="number" value="0" name="row2B">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row2B">
       </td>
       <td>
         <a>Slices Pesto:</a>
-        <input type="number" value="0" name="row2C">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row2C">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row2checkA">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkA">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row2checkB">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkB">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row2checkC">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkC">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row2checkD">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkD">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row2checkE">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkE">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row2checkF">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkF">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row2checkG">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkG">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row2checkH">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkH">
       </td>
     </tr>
     <tr>
@@ -222,39 +222,39 @@ Apply first week order to all other weeks
       </td>
       <td>
         <a>Slices Cheese:</a>
-        <input type="number" value="0" name="row3A">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row3A">
       </td>
       <td>
         <a>Slices Pepperoni:</a>
-        <input type="number" value="0" name="row3B">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row3B">
       </td>
       <td>
         <a>Slices Pesto:</a>
-        <input type="number" value="0" name="row3C">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row3C">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row3checkA">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkA">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row3checkB">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkB">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row3checkC">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkC">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row3checkD">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkD">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row3checkE">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkE">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row3checkF">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkF">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row3checkG">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkG">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row3checkH">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkH">
       </td>
     </tr>
     <tr>
@@ -269,39 +269,39 @@ Apply first week order to all other weeks
       </td>
       <td>
         <a>Slices Cheese:</a>
-        <input type="number" value="0" name="row4A">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row4A">
       </td>
       <td>
         <a>Slices Pepperoni:</a>
-        <input type="number" value="0" name="row4B">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row4B">
       </td>
       <td>
         <a>Slices Pesto:</a>
-        <input type="number" value="0" name="row4C">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row4C">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row4checkA">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkA">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row4checkB">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkB">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row4checkC">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkC">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row4checkD">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkD">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row4checkE">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkE">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row4checkF">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkF">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row4checkG">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkG">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row4checkH">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkH">
       </td>
     </tr>
     <tr>
@@ -316,44 +316,49 @@ Apply first week order to all other weeks
       </td>
       <td>
         <a>Slices Cheese:</a>
-        <input type="number" value="0" name="row5A">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row5A">
       </td>
       <td>
         <a>Slices Pepperoni:</a>
-        <input type="number" value="0" name="row5B">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row5B">
       </td>
       <td>
         <a>Slices Pesto:</a>
-        <input type="number" value="0" name="row5C">
+        <input onchange="setTotalSoFar()" type="number" value="0" name="row5C">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row5checkA">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkA">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row5checkB">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkB">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row5checkC">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkC">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row5checkD">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkD">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row5checkE">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkE">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row5checkF">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkF">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row5checkG">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkG">
       </td>
       <td>
-        <input type="checkbox" class="lCheck" name="row5checkH">
+        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkH">
       </td>
     </tr>
   </table>
   <input type="hidden" id="emailInput" name="email">
+  <input type="hidden" id="submitionTime" name="submitionTime">
+  <br>
+  <a>Total So Far:</a><b id="currentTotal"></b>
+  <br>
   <a>Please <b>double-check</b> your order before submiting it!</a>
+  <br>
   <br>
   <button class="pizzaFormButton" value="submit">
     Submit and Continue Shopping
@@ -362,11 +367,6 @@ Apply first week order to all other weeks
     Submit and Pay
   </button>
   <br>
-</form>
-<a>Your Current Total:</a>
-<br>
-<form name="priceForm">
-  <input type="text" name="pizzaPriceBox" disabled="disabled" class="priceBox" id="pizzaPriceBox"></input>
 </form>
 `
 
@@ -446,12 +446,7 @@ function repeatOrder(rows)  {
     }
 }
 
-function findPrice(rows)  {
-//  var keepGoing = confirm("Submiting your order for " + PizzaOrder.studentsName.value + ".");
-//  if (keepGoing === false) {
-//    window.open('localhost:8000/order/pizza.html', '_top')
-//    return
-//  }
+function computeTotalPrice(rows)  {
   var loopRows = rows + 1;
   var price = 0;
   for (i = 1; i < loopRows; i++) {
@@ -492,15 +487,25 @@ function findPrice(rows)  {
       price = price + Number(PizzaOrder.garlicKnotPrice.value);
     }
   }
-  price_val = getCookie('price')
-  if (price_val !== undefined && price_val !== null) {
-    var oldPrice = Number(price_val);
+  return price;
+}
+
+function setTotalSoFar() {
+  var price = computeTotalPrice(5); // XXX fix this later
+  document.getElementById("currentTotal").innerHTML = price;
+}
+
+function findPrice(rows) {
+  var price = computeTotalPrice(rows);
+  prev_price_val = getCookie('price');
+  if (prev_price_val !== undefined && prev_price_val !== null) {
+    var prevPrice = Number(prev_price_val);
   }
   else {
-    var oldPrice = 0.0;
+    var prevPrice = 0.0;
   }
   var newPrice = Number(price);
-  setCookie("price", newPrice+oldPrice, 5)
+  setCookie("price", newPrice+prevPrice, 5);
 }
 
 function setCookie(cname, cvalue, exminutes) {
@@ -537,7 +542,7 @@ function loadForm(email_val) {
   if (getCookie('payOnReturn') !== undefined && getCookie('payOnReturn') !== null) {
     var newWin = openPayment();
     if(!newWin || newWin.closed || typeof newWin.closed=='undefined') {
-      coverWindow('<p>To continue to PayPal, please click below:<br><a href="#" onclick="openPayment()">PayPal</a></p>')
+      document.getElementById('googleFormHolder').value = '<p>To continue to PayPal, please click below:<br><a href="#" onclick="openPayment()">PayPal</a></p>';
     }
     //setCookie('price', 0, 0);
   }
@@ -550,6 +555,7 @@ function loadForm(email_val) {
     document.getElementById("googleFormHolder").innerHTML = PIZZA_FORM_CODE;
     console.log('Email val: ' + email_val);
     document.getElementById('emailInput').value = email_val;
+    document.getElementById('submitionTime').value = Date.now.toString();
 
     //("<iframe style ='border: none;' width=50% height=500px src=https://docs.google.com/a/luebke.us/forms/d/e/1FAIpQLSeLN67cNKxAPe8c1pdC36rfhph1OKX-mAg0X6pdRt2wuXbLGA/viewform?emailAddress=" + email_val + "></iframe><div id='orderOrPay'><br><a>Your Current Total:</a><input type='text' id='price' class='priceBox' disabled='disabled' value='$0.00'><br><button type='button' onclick='location.reload()'>Place another order</button><button type='button' onclick='openPayment(price)'>Pay for your order now</button></div>");
   }
