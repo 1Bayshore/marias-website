@@ -1,20 +1,20 @@
 <form id="PizzaOrder" onsubmit="findPrice(5)" method="POST" action="https://script.google.com/a/luebke.us/macros/s/AKfycbx5wU3Bu4XLHMUbxArP5IVxIdco7XPKpqn6rgaJDjYUW1s25w/exec">
-  <a class="larga">Student's Name</a>
+  <span>Student's Name</span>
   <br>
   <input type="text" name="studentsName">
   <br>
-  <a class="larga">Classroom</a>
-<br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls1" name="classMenu" value="CH1 (Turtle)"><a>CH1 (Turtle)</a><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls2" name="classMenu" value="CH2 (Dolphin)"><a>CH2 (Dolphin)</a><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls3" name="classMenu" value="CH3 (Hummingbird)"><a>CH3 (Hummingbird)</a><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls4" name="classMenu" value="CH4 (Cardinal)"><a>CH4 (Cardinal)</a><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls5" name="classMenu" value="LE1"><a>LE1</a><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls6" name="classMenu" value="LE2"><a>LE2</a><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls7" name="classMenu" value="UE"><a>UE</a><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls8" name="classMenu" value="MS"><a>MS</a><br>
+  <span>Classroom</span>
+  <br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls1" name="classMenu" value="CH1 (Turtle)"><span class="smallText">CH1 (Turtle)</span><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls2" name="classMenu" value="CH2 (Dolphin)"><span class="smallText">CH2 (Dolphin)</span><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls3" name="classMenu" value="CH3 (Hummingbird)"><span class="smallText">CH3 (Hummingbird)</span><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls4" name="classMenu" value="CH4 (Cardinal)"><span class="smallText">CH4 (Cardinal)</span><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls5" name="classMenu" value="LE1"><span class="smallText">LE1</span><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls6" name="classMenu" value="LE2"><span class="smallText">LE2</span><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls7" name="classMenu" value="UE"><span class="smallText">UE</span><br>
+  <input type="radio" onclick="updateClassroomValue()" id="cls8" name="classMenu" value="MS"><span class="smallText">MS</span><br>
   <input type="hidden" id="classroom" name="classroom">
-  <a class="larga">Pizza Lunch Order</a>
+  <span>Pizza Lunch Order</span>
   <br>
   <!--<button onclick="repeatOrder(total # of weeks)">
 Apply first week order to all other weeks
@@ -25,98 +25,98 @@ Apply first week order to all other weeks
   <table class="lunchOrderTable" border="1">
     <tr>
       <td>
-        <a>Date</a>
+        <span class="smallText">Date</span>
       </td>
       <td>
-        <a>Clear Order</a>
+        <span class="smallText">Clear Order</span>
       </td>
       <td>
-        <a>Slices Cheese Pizza</a>
+        <span class="smallText">Slices Cheese Pizza</span>
       </td>
       <td>
-        <a>Slices Pepperoni Pizza</a>
+        <span class="smallText">Slices Pepperoni Pizza</span>
       </td>
       <td>
-        <a>Slices Pesto Pizza</a>
+        <span class="smallText">Slices Pesto Pizza</span>
       </td>
       <td>
-        <a>Pirate's Booty</a>
+        <span class="smallText">Pirate's Booty</span>
       </td>
       <td>
-        <a>Veggie Straws</a>
+        <span class="smallText">Veggie Straws</span>
       </td>
       <td>
-        <a>Animal Crackers</a>
+        <span class="smallText">Animal Crackers</span>
       </td>
       <td>
-        <a>Applesauce</a>
+        <span class="smallText">Applesauce</span>
       </td>
       <td>
-        <a>Fruit Leather</a>
+        <span class="smallText">Fruit Leather</span>
       </td>
       <td>
-        <a>Lemonade</a>
+        <span class="smallText">Lemonade</span>
       </td>
       <td>
-        <a>Apple Juice</a>
+        <span class="smallText">Apple Juice</span>
       </td>
       <td>
-        <a>Garlic Knot</a>
+        <span class="smallText">Garlic Knot</span>
       </td>
     </tr>
     <tr>
       <td>
-        <a>Price:</a>
+        <span class="smallText">Price:</span>
       </td>
-      <td><a>$</a></td>
+      <td><span class="smallText">$</span></td>
       <td>
-        <a id="cheesePrice">2.00</a>
+        <span class="smallText" id="cheesePrice">2.00</span>
         <input name="cheesePrice" type="hidden" value="2.00">
       </td>
       <td>
-        <a id="pepperoniPrice">2.50</a>
+        <span class="smallText" id="pepperoniPrice">2.50</span>
         <input name="pepperoniPrice" type="hidden" value="2.50">
       </td>
       <td>
-        <a id="pestoPrice">2.50</a>
+        <span class="smallText" id="pestoPrice">2.50</span>
         <input name="pestoPrice" type="hidden" value="2.50">
       </td>
       <td>
-        <a id="piratesBootyPrice">1.50</a>
+        <span class="smallText" id="piratesBootyPrice">1.50</span>
         <input name="piratesBootyPrice" type="hidden" value="1.50">
       </td>
       <td>
-        <a id="veggieStrawsPrice">1.00</a>
+        <span class="smallText" id="veggieStrawsPrice">1.00</span>
         <input name="veggieStrawsPrice" type="hidden" value="1.00">
       </td>
       <td>
-        <a id="animalCrackersPrice">1.50</a>
+        <span class="smallText" id="animalCrackersPrice">1.50</span>
         <input name="animalCrackersPrice" type="hidden" value="1.50">
       </td>
       <td>
-        <a id="applesaucePrice">1.50</a>
+        <span class="smallText" id="applesaucePrice">1.50</span>
         <input name="applesaucePrice" type="hidden" value="1.50">
       </td>
       <td>
-        <a id="fruitLeatherPrice">1.00</a>
+        <span class="smallText" id="fruitLeatherPrice">1.00</span>
         <input name="fruitLeatherPrice" type="hidden" value="1.00">
       </td>
       <td>
-        <a id="lemonadePrice">1.50</a>
+        <span class="smallText" id="lemonadePrice">1.50</span>
         <input name="lemonadePrice" type="hidden" value="1.50">
       </td>
       <td>
-        <a id="appleJuicePrice">1.50</a>
+        <span class="smallText" id="appleJuicePrice">1.50</span>
         <input name="appleJuicePrice" type="hidden" value="1.50">
       </td>
       <td>
-        <a id="garlicKnotPrice">2.00</a>
+        <span class="smallText" id="garlicKnotPrice">2.00</span>
         <input name="garlicKnotPrice" type="hidden" value="2.00">
       </td>
     </tr>
     <tr>
       <td>
-        <a>09/07</a>
+        <span class="smallText">09/07</span>
         <input name="row1date" type="hidden" value="09/07">
       </td>
       <!-- add disabled="disabled" to disable checkboxes, buttons and inputs on Thursday so parents can only order for dates past that Friday.-->
@@ -126,15 +126,15 @@ Apply first week order to all other weeks
         </button>
       </td>
       <td>
-        <a>Slices Cheese:</a>
+        <span class="smallText">Slices Cheese:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row1A">
       </td>
       <td>
-        <a>Slices Pepperoni:</a>
+        <span class="smallText">Slices Pepperoni:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row1B">
       </td>
       <td>
-        <a>Slices Pesto:</a>
+        <span class="smallText">Slices Pesto:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row1C">
       </td>
       <td>
@@ -164,7 +164,7 @@ Apply first week order to all other weeks
     </tr>
     <tr>
       <td>
-        <a>09/14</a>
+        <span class="smallText">09/14</span>
         <input type="hidden" value="09/14" name="row2date">
       </td>
       <td>
@@ -173,15 +173,15 @@ Apply first week order to all other weeks
         </button>
       </td>
       <td>
-        <a>Slices Cheese:</a>
+        <span class="smallText">Slices Cheese:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row2A">
       </td>
       <td>
-        <a>Slices Pepperoni:</a>
+        <span class="smallText">Slices Pepperoni:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row2B">
       </td>
       <td>
-        <a>Slices Pesto:</a>
+        <span class="smallText">Slices Pesto:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row2C">
       </td>
       <td>
@@ -211,7 +211,7 @@ Apply first week order to all other weeks
     </tr>
     <tr>
       <td>
-        <a>09/21</a>
+        <span class="smallText">09/21</span>
         <input type="hidden" name="row3date" value="09/21">
       </td>
       <td>
@@ -220,15 +220,15 @@ Apply first week order to all other weeks
         </button>
       </td>
       <td>
-        <a>Slices Cheese:</a>
+        <span class="smallText">Slices Cheese:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row3A">
       </td>
       <td>
-        <a>Slices Pepperoni:</a>
+        <span class="smallText">Slices Pepperoni:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row3B">
       </td>
       <td>
-        <a>Slices Pesto:</a>
+        <span class="smallText">Slices Pesto:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row3C">
       </td>
       <td>
@@ -258,7 +258,7 @@ Apply first week order to all other weeks
     </tr>
     <tr>
       <td>
-        <a>09/28</a>
+        <span class="smallText">09/28</span>
         <input type="hidden" name="row4date" value="09/28">
       </td>
       <td>
@@ -267,15 +267,15 @@ Apply first week order to all other weeks
         </button>
       </td>
       <td>
-        <a>Slices Cheese:</a>
+        <span class="smallText">Slices Cheese:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row4A">
       </td>
       <td>
-        <a>Slices Pepperoni:</a>
+        <span class="smallText">Slices Pepperoni:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row4B">
       </td>
       <td>
-        <a>Slices Pesto:</a>
+        <span class="smallText">Slices Pesto:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row4C">
       </td>
       <td>
@@ -305,7 +305,7 @@ Apply first week order to all other weeks
     </tr>
     <tr>
       <td>
-        <a>10/05</a>
+        <span class="smallText">10/05</span>
         <input type="hidden" value="10/05" name="row5date">
       </td>
       <td>
@@ -314,15 +314,15 @@ Apply first week order to all other weeks
         </button>
       </td>
       <td>
-        <a>Slices Cheese:</a>
+        <span class="smallText">Slices Cheese:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row5A">
       </td>
       <td>
-        <a>Slices Pepperoni:</a>
+        <span class="smallText">Slices Pepperoni:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row5B">
       </td>
       <td>
-        <a>Slices Pesto:</a>
+        <span class="smallText">Slices Pesto:</span>
         <input onchange="setTotalSoFar()" type="number" value="0" name="row5C">
       </td>
       <td>
@@ -354,9 +354,9 @@ Apply first week order to all other weeks
   <input type="hidden" id="emailInput" name="email">
   <input type="hidden" id="submitionTime" name="submitionTime">
   <br>
-  <a>Total So Far:</a><b id="currentTotal"></b>
+  <span class="smallText">Total So Far:</span><b id="currentTotal"></b>
   <br>
-  <a>Please <b>double-check</b> your order before submiting it!</a>
+  <span class="smallText">Please <b>double-check</b> your order before submiting it!</span>
   <br>
   <br>
   <button class="pizzaFormButton" value="submit">

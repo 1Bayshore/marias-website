@@ -19,7 +19,7 @@ p {
   font-size: 20px
 }
 
-a {
+.smallText{
   font-family: "Courier New", monospace;
   font-size:12px;
 }
@@ -32,6 +32,10 @@ td {
   background-color: white;
   font-family: "Courier New", monospace;
   font-size: 12px
+}
+
+a {
+  font-family: "Courier New", "monospace";
 }
 
 input {

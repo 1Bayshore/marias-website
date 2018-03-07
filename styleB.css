@@ -20,7 +20,7 @@ p {
   font-size: 20px
 }
 
-a {
+.smallText {
   font-family: "Goudy Old Style", serif;
   font-size:12px;
 }
@@ -33,6 +33,10 @@ td {
   background-color: white;
   font-family: "Goudy Old Style", serif;
   font-size: 12px
+}
+
+a {
+  font-family: "Goudy Old Style", serif;
 }
 
 input {
