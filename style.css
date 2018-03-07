@@ -36,6 +36,7 @@ td {
 
 a {
   font-family: "Courier New", "monospace";
+  font-size: 18px;
 }
 
 input {
@@ -177,6 +178,7 @@ button:hover {
   text-decoration: none;
   display: block;
   text-align: left;
+  font-size: 12px;
 }
 
 .dropdown-content a:hover {
