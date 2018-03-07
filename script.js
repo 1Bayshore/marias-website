@@ -539,12 +539,15 @@ function checkCookie() {
 }
 
 function loadForm(email_val) {
-  if (getCookie('payOnReturn') !== undefined && getCookie('payOnReturn') !== null) {
+  /*if (getCookie('payOnReturn') !== undefined && getCookie('payOnReturn') !== null) {
     var newWin = openPayment();
     if(!newWin || newWin.closed || typeof newWin.closed=='undefined') {
       document.getElementById('googleFormHolder').value = '<p>To continue to PayPal, please click below:<br><a href="#" onclick="openPayment()">PayPal</a></p>';
     }
     //setCookie('price', 0, 0);
+  }*/
+  if (getCookie('payOnReturn') !== undefined && getCookie('payOnReturn') !== null) {
+    window.open('payment.html','_top');
   }
   if (checkEmailInvoice(email_val)) {
     var checked = true;
@@ -619,10 +622,10 @@ function loadPriceFromCookies() {
   setCookie('price', 0, 0);
 }
 
-function openPayment() {
+/*function openPayment() {
   var newWin = window.open('../payfororder/index.html','newwindow', 'width=300px, height=500px');
   return newWin;
-}
+}*/
 
 /*
 function colectOrderData() {

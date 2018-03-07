@@ -124,6 +124,12 @@ button:hover {
   text-align: left
 }
 
+.paymentFrame {
+  padding-top: 10%;
+  height: 300px;
+  border: none;
+}
+
 /* Dropdown Button */
 .menuBar {
   background-color: orange;
