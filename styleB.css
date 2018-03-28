@@ -40,6 +40,15 @@ a {
   font-size: 18px;
 }
 
+span {
+  font-family: "Goudy Old Style", serif;
+}
+
+b {
+  font-family: "Goudy Old Style", serif;
+  font-size: 18px;
+}
+
 input {
   font-family: "Goudy Old Style", serif;
 }
@@ -54,8 +63,6 @@ button {
 }
 
 button:hover {
-  padding: 2px;
-  font-size: 13px;
   background-color: #069181;
   border-color: #000000
 }

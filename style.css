@@ -35,8 +35,17 @@ td {
 }
 
 a {
-  font-family: "Courier New", "monospace";
+  font-family: "Courier New", monospace;
   font-size: 18px;
+}
+
+b {
+  font-family: "Courier New", monospace;
+  font-size:12px;
+}
+
+span {
+  font-family: "Courier New", monospace;
 }
 
 input {
@@ -157,9 +166,9 @@ button:hover {
   background-color: inherit;
 }
 
-.container a:hover, .dropdown:hover .dropbtn {
-  /*background-color: orange;*/
-}
+/*.container a:hover, .dropdown:hover .dropbtn {
+  /*background-color: orange;
+}*/
 
 .dropdown-content {
   display: none;

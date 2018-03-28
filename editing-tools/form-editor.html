@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Create an Html Form with Drag and Drop | Maria's</title>
+        <script type="text/javascript" src="form-editor.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body onload="offerElements()">
+        <div class="elements">
+            <p>Click the buttons below to add elements to your form. When you have finished, press the "Export" button to export your form.</p>
+            <button type="button" class="fileAppButton" onclick="saveForm()">Save</button>
+            <button type="button" class="fileAppButton" onclick="loadForm()">Load</button>
+            <button type="button" class="fileAppButton" onclick="exportForm()">Export</button>
+            Elements:
+        </div>
+        <form class="formContents" method="POST" action=""></form>
+    </body>
+</html>

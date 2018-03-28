@@ -1,381 +1,9 @@
-var PIZZA_FORM_CODE = `
-<form id="PizzaOrder" onsubmit="findPrice(5)" method="POST" action="https://script.google.com/a/luebke.us/macros/s/AKfycbx5wU3Bu4XLHMUbxArP5IVxIdco7XPKpqn6rgaJDjYUW1s25w/exec">
-  <span>Student's Name</span>
-  <br>
-  <input type="text" name="studentsName">
-  <br>
-  <span>Classroom</span>
-  <br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls1" name="classMenu" value="CH1 (Turtle)"><span class="smallText">CH1 (Turtle)</span><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls2" name="classMenu" value="CH2 (Dolphin)"><span class="smallText">CH2 (Dolphin)</span><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls3" name="classMenu" value="CH3 (Hummingbird)"><span class="smallText">CH3 (Hummingbird)</span><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls4" name="classMenu" value="CH4 (Cardinal)"><span class="smallText">CH4 (Cardinal)</span><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls5" name="classMenu" value="LE1"><span class="smallText">LE1</span><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls6" name="classMenu" value="LE2"><span class="smallText">LE2</span><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls7" name="classMenu" value="UE"><span class="smallText">UE</span><br>
-  <input type="radio" onclick="updateClassroomValue()" id="cls8" name="classMenu" value="MS"><span class="smallText">MS</span><br>
-  <input type="hidden" id="classroom" name="classroom">
-  <span>Pizza Lunch Order</span>
-  <br>
-  <!--<button onclick="repeatOrder(total # of weeks)">
-Apply first week order to all other weeks
-</button>-->
-  <button type="button" onclick="repeatOrder(5)">
-    Apply first week order to all other weeks
-  </button>
-  <table class="lunchOrderTable" border="1">
-    <tr>
-      <td>
-        <span class="smallText">Date</span>
-      </td>
-      <td>
-        <span class="smallText">Clear Order</span>
-      </td>
-      <td>
-        <span class="smallText">Slices Cheese Pizza</span>
-      </td>
-      <td>
-        <span class="smallText">Slices Pepperoni Pizza</span>
-      </td>
-      <td>
-        <span class="smallText">Slices Pesto Pizza</span>
-      </td>
-      <td>
-        <span class="smallText">Pirate's Booty</span>
-      </td>
-      <td>
-        <span class="smallText">Veggie Straws</span>
-      </td>
-      <td>
-        <span class="smallText">Animal Crackers</span>
-      </td>
-      <td>
-        <span class="smallText">Applesauce</span>
-      </td>
-      <td>
-        <span class="smallText">Fruit Leather</span>
-      </td>
-      <td>
-        <span class="smallText">Lemonade</span>
-      </td>
-      <td>
-        <span class="smallText">Apple Juice</span>
-      </td>
-      <td>
-        <span class="smallText">Garlic Knot</span>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span class="smallText">Price:</span>
-      </td>
-      <td><span class="smallText">$</span></td>
-      <td>
-        <span class="smallText" id="cheesePrice">2.00</span>
-        <input name="cheesePrice" type="hidden" value="2.00">
-      </td>
-      <td>
-        <span class="smallText" id="pepperoniPrice">2.50</span>
-        <input name="pepperoniPrice" type="hidden" value="2.50">
-      </td>
-      <td>
-        <span class="smallText" id="pestoPrice">2.50</span>
-        <input name="pestoPrice" type="hidden" value="2.50">
-      </td>
-      <td>
-        <span class="smallText" id="piratesBootyPrice">1.50</span>
-        <input name="piratesBootyPrice" type="hidden" value="1.50">
-      </td>
-      <td>
-        <span class="smallText" id="veggieStrawsPrice">1.00</span>
-        <input name="veggieStrawsPrice" type="hidden" value="1.00">
-      </td>
-      <td>
-        <span class="smallText" id="animalCrackersPrice">1.50</span>
-        <input name="animalCrackersPrice" type="hidden" value="1.50">
-      </td>
-      <td>
-        <span class="smallText" id="applesaucePrice">1.50</span>
-        <input name="applesaucePrice" type="hidden" value="1.50">
-      </td>
-      <td>
-        <span class="smallText" id="fruitLeatherPrice">1.00</span>
-        <input name="fruitLeatherPrice" type="hidden" value="1.00">
-      </td>
-      <td>
-        <span class="smallText" id="lemonadePrice">1.50</span>
-        <input name="lemonadePrice" type="hidden" value="1.50">
-      </td>
-      <td>
-        <span class="smallText" id="appleJuicePrice">1.50</span>
-        <input name="appleJuicePrice" type="hidden" value="1.50">
-      </td>
-      <td>
-        <span class="smallText" id="garlicKnotPrice">2.00</span>
-        <input name="garlicKnotPrice" type="hidden" value="2.00">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span class="smallText">09/07</span>
-        <input name="row1date" type="hidden" value="09/07">
-      </td>
-      <!-- add disabled="disabled" to disable checkboxes, buttons and inputs on Thursday so parents can only order for dates past that Friday.-->
-      <td>
-        <button type="button" onclick="clearRow(1);">
-          Clear
-        </button>
-      </td>
-      <td>
-        <span class="smallText">Slices Cheese:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row1A">
-      </td>
-      <td>
-        <span class="smallText">Slices Pepperoni:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row1B">
-      </td>
-      <td>
-        <span class="smallText">Slices Pesto:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row1C">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkA">
-      </td>
-      <td>
-      <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkB">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkC">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkD">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkE">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkF">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkG">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row1checkH">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span class="smallText">09/14</span>
-        <input type="hidden" value="09/14" name="row2date">
-      </td>
-      <td>
-        <button type="button" onclick="clearRow(2)">
-          Clear
-        </button>
-      </td>
-      <td>
-        <span class="smallText">Slices Cheese:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row2A">
-      </td>
-      <td>
-        <span class="smallText">Slices Pepperoni:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row2B">
-      </td>
-      <td>
-        <span class="smallText">Slices Pesto:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row2C">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkA">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkB">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkC">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkD">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkE">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkF">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkG">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row2checkH">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span class="smallText">09/21</span>
-        <input type="hidden" name="row3date" value="09/21">
-      </td>
-      <td>
-        <button type="button" onclick="clearRow(3)">
-          Clear
-        </button>
-      </td>
-      <td>
-        <span class="smallText">Slices Cheese:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row3A">
-      </td>
-      <td>
-        <span class="smallText">Slices Pepperoni:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row3B">
-      </td>
-      <td>
-        <span class="smallText">Slices Pesto:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row3C">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkA">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkB">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkC">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkD">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkE">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkF">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkG">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row3checkH">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span class="smallText">09/28</span>
-        <input type="hidden" name="row4date" value="09/28">
-      </td>
-      <td>
-        <button type="button" onclick="clearRow(4)">
-          Clear
-        </button>
-      </td>
-      <td>
-        <span class="smallText">Slices Cheese:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row4A">
-      </td>
-      <td>
-        <span class="smallText">Slices Pepperoni:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row4B">
-      </td>
-      <td>
-        <span class="smallText">Slices Pesto:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row4C">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkA">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkB">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkC">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkD">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkE">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkF">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkG">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row4checkH">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span class="smallText">10/05</span>
-        <input type="hidden" value="10/05" name="row5date">
-      </td>
-      <td>
-        <button type="button" onclick="clearRow(5)">
-          Clear
-        </button>
-      </td>
-      <td>
-        <span class="smallText">Slices Cheese:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row5A">
-      </td>
-      <td>
-        <span class="smallText">Slices Pepperoni:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row5B">
-      </td>
-      <td>
-        <span class="smallText">Slices Pesto:</span>
-        <input onchange="setTotalSoFar()" type="number" value="0" name="row5C">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkA">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkB">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkC">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkD">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkE">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkF">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkG">
-      </td>
-      <td>
-        <input onchange="setTotalSoFar()" type="checkbox" class="lCheck" name="row5checkH">
-      </td>
-    </tr>
-  </table>
-  <input type="hidden" id="emailInput" name="email">
-  <input type="hidden" id="submitionTime" name="submitionTime">
-  <br>
-  <span class="smallText">Total So Far:</span><b id="currentTotal"></b>
-  <br>
-  <span class="smallText">Please <b>double-check</b> your order before submiting it!</span>
-  <br>
-  <br>
-  <button class="pizzaFormButton" value="submit">
-    Submit and Continue Shopping
-  </button>
-  <button class="pizzaFormButton" value="submit" onclick="setCookie('payOnReturn', true, 0.5)">
-    Submit and Pay
-  </button>
-  <br>
-</form>
-`
-
 //Thankfully I did not have to write this Moble Page Transfering Code myself; it was on Stack Overflow!
 
 function mobliePageTransfer (page) {
   var check = moblieCheck()
   if (check) {
-    location.href = eval("mobile/"+page);
+    location.href = "mobile/"+page;
   }
 }
 
@@ -385,118 +13,300 @@ function moblieCheck () {
   return check;
 }
 
-function updateClassroomValue () {
-  var classroom = '';
-  if (document.getElementById('cls1').checked) {
-    classroom = 'CH1 (Turtles)';
+function checkAvalibility(page_name) {
+  var not_avalible_pages = new Array();
+  if (page_name in not_avalible_pages || page_name == not_avalible_pages) {
+    var elements = document.body.children;
+    alert(elements);
+    var number_removed = 0;
+    for (i = 0; i < elements.length; i++) {
+      alert(elements[i].className);
+      if (elements[i].className !== 'nav') {
+        alert(number_removed);
+        if (number_removed == 0) {
+          document.body.insertBefore(createElement('iframe').id = 'toreplace', elements[i]);
+          alert('working');
+        }
+        document.body.removeChild(elements[i]);
+      }
+    }
+    var p = document.createElement('p');
+    p.innerHTML = `This page is currently not avalible. Please return to the <a href='javascript:location.back(-1)'>previous page</a> or choose a different page from the menu above.`;
+    document.body.replaceChild(p, document.getElementById('toreplace'));
   }
-  if (document.getElementById('cls2').checked) {
-    classroom = 'CH2 (Dolphin)';
-  }
-  if (document.getElementById('cls3').checked) {
-    classroom = 'CH3 (Hummingbird)';
-  }
-  if (document.getElementById('cls4').checked) {
-    classroom = 'CH4 (Cardinal)';
-  }
-  if (document.getElementById('cls5').checked) {
-    classroom = 'LE1';
-  }
-  if (document.getElementById('cls6').checked) {
-    classroom = 'LE2';
-  }
-  if (document.getElementById('cls7').checked) {
-    classroom = 'UE';
-  }
-  if (document.getElementById('cls8').checked) {
-    classroom = 'MS';
-  }
+}
+
+API_KEY = 'AIzaSyDASqIVw33D0GF9keRiBkwlaouKwJrvMfE';
+
+function handleClientLoad() {
+  gapi.load('client:auth2', initClient);
+}
+
+function initClient() {
+  gapi.client.init({
+    apiKey: API_KEY,
+    discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
+    scope: "https://www.googleapis.com/auth/spreadsheets.readonly"
+  });
+}
+
+function addFormToPage(email_val) {
+  document.getElementById('googleFormHolder').innerHTML = ``;
+  var form = document.createElement('form');
+  form.id = "PizzaOrder";
+  form.onsubmit = 'findPrice()';
+  form.method = "POST";
+  form.action = "https://script.google.com/a/luebke.us/macros/s/AKfycbx5wU3Bu4XLHMUbxArP5IVxIdco7XPKpqn6rgaJDjYUW1s25w/exec";
+  document.getElementById('googleFormHolder').appendChild(form);
+  var students_name_text = document.createElement('span');
+  var students_name_input = document.createElement('input');
+  students_name_text.innerHTML = "Student's Name";
+  students_name_input.type = "text";
+  students_name_input.name = "studentsName";
+  form.appendChild(students_name_text);
+  form.appendChild(document.createElement('br'));
+  form.appendChild(students_name_input);
+  form.appendChild(document.createElement('br'));
+  gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: '1MGoW4y5FofTEukCY7oaazlDiVORZ4VQ3KbB3U6s-02Y',
+    range: 'Classrooms!A1:B',
+  }).then(function(response) {
+    var range_data = response.result;
+    var classroom_title = document.createElement('span');
+    classroom_title.innerHTML = 'Classroom';
+    form.appendChild(classroom_title);
+    form.appendChild(document.createElement('br'));
+    var hidden_cls = document.createElement('input');
+    hidden_cls.type = 'hidden';
+    hidden_cls.name = 'classroom';
+    hidden_cls.id = 'classroom';
+    form.appendChild(hidden_cls);
+    for (i = 0; i < range_data.values.length; i++) {
+      var radio_btn = document.createElement("input");
+      radio_btn.type = 'radio';
+      radio_btn.onchange = function() {updateClassroomValue(`${range_data.values[i][0]}`)};
+      radio_btn.id = range_data.values[i][1];
+      radio_btn.name = 'classMenu';
+      var span = document.createElement('span');
+      span.className = 'smallText';
+      span.innerHTML = range_data.values[i][0];
+      form.appendChild(radio_btn);
+      form.appendChild(span);
+      form.appendChild(document.createElement('br'));
+    }
+    gapi.client.sheets.spreadsheets.values.get({
+      spreadsheetId: '1MGoW4y5FofTEukCY7oaazlDiVORZ4VQ3KbB3U6s-02Y',
+      range: 'Dates!A1:B',
+    }).then(function(response) {
+      var dates_data = response.result;
+      gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: '1MGoW4y5FofTEukCY7oaazlDiVORZ4VQ3KbB3U6s-02Y',
+        range: 'Products!A2:F',
+      }).then(function(response) {
+        var products_data = response.result;
+        var title = document.createElement('span');
+        title.innerHTML = "Pizza Lunch Order";
+        form.appendChild(title);
+        form.appendChild(document.createElement('br'));
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.setAttribute("onclick",'repeatOrder()');
+        button.innerHTML = 'Apply first week order to all other weeks';
+        form.appendChild(button);
+        var table = document.createElement('table');
+        table.className = "lunchOrderTable";
+        table.border = 1;
+        var tr_titles = document.createElement('tr');
+        var tr_prices = document.createElement('tr');
+        var title_date_td = document.createElement('td');
+        var date_td_span = document.createElement('span');
+        date_td_span.className = 'smallText';
+        date_td_span.innerHTML = 'Date';
+        title_date_td.appendChild(date_td_span);
+        tr_titles.appendChild(title_date_td);
+        var clear_row_td = document.createElement('td');
+        var clear_row_span = document.createElement('span');
+        clear_row_span.className = 'smallText';
+        clear_row_span.innerHTML = 'Clear Order';
+        clear_row_td.appendChild(clear_row_span);
+        tr_titles.appendChild(clear_row_td);
+        var price_td = document.createElement('td');
+        var price_span = document.createElement('span');
+        price_span.className = 'smallText';
+        price_span.innerHTML = 'Price:';
+        price_td.appendChild(price_span);
+        tr_prices.appendChild(price_td);
+        tr_prices.appendChild(document.createElement('td'));
+        for (i = 0; i < products_data.values.length; i++) {
+          var td_title = document.createElement('td');
+          var span_title = document.createElement('span');
+          span_title.className = 'smallText';
+          if (products_data.values[i][1] == 'Pizza') {
+            var title_innerHTML = `Slices ${products_data.values[i][0]} Pizza`;
+          }
+          else {
+            var title_innerHTML = products_data.values[i][0];
+          }
+          span_title.innerHTML = title_innerHTML;
+          td_title.appendChild(span_title);
+          tr_titles.appendChild(td_title);
+          var td_price = document.createElement('td');
+          var span_price = document.createElement('span');
+          span_price.className = 'smallText';
+          span_price.innerHTML = products_data.values[i][4];
+          span_price.id = `priceCol${i}`;
+          td_price.appendChild(span_price);
+          tr_prices.appendChild(td_price);
+        }
+        table.appendChild(tr_titles);
+        table.appendChild(tr_prices);
+        for (x = 0; x < dates_data.values.length; x++) {
+          var tr_x = document.createElement('tr');
+          var date_td = document.createElement('td');
+          var date_span = document.createElement('span');
+          date_span.className = 'smallText';
+          date_span.innerHTML = dates_data.values[x][0];
+          date_td.appendChild(date_span);
+          var clear_td = document.createElement('td');
+          var clear_button = document.createElement('button');
+          clear_button.type = 'button';
+          clear_button.setAttribute("onclick",`clearRow(${x})`);
+          clear_button.innerHTML = 'Clear';
+          clear_td.appendChild(clear_button);
+          tr_x.appendChild(date_td);
+          tr_x.appendChild(clear_td);
+          for (y = 0; y < products_data.values.length; y++) {
+            var td_cell = document.createElement('td');
+            if (products_data.values[y][1] == 'Pizza') {
+              var td_innerHTML = document.createElement('input');
+              td_innerHTML.onchange = function() {setTotalSoFar()};
+              td_innerHTML.type = 'number';
+              td_innerHTML.value = 0;
+              td_innerHTML.className = `row${x}`
+              td_innerHTML.name = `row${x}col${y}`;
+              td_innerHTML.id = `row${x}col${y}`;
+            }
+            else {
+              var td_innerHTML = document.createElement('input');
+              td_innerHTML.onchange = function() {setTotalSoFar()};
+              td_innerHTML.type = 'checkbox';
+              td_innerHTML.className = 'lCheck';
+              td_innerHTML.className = `row${x}`
+              td_innerHTML.name = `row${x}col${y}`;
+              td_innerHTML.id = `row${x}col${y}`;
+            }
+            td_cell.appendChild(td_innerHTML);
+            tr_x.appendChild(td_cell);
+          }
+          table.appendChild(tr_x);
+        }
+        form.appendChild(table);
+        var email_input = document.createElement('input');
+        email_input.type = 'hidden';
+        email_input.id = 'emailInput';
+        email_input.name = 'email';
+        email_input.value = email_val;
+        form.appendChild(email_input);
+        var submition_time_input = document.createElement('input');
+        submition_time_input.type = 'hidden';
+        submition_time_input.id = 'submitionTime';
+        submition_time_input.name = 'submitionTime';
+        submition_time_input.value = Date.now.toString();
+        form.appendChild(submition_time_input);
+        form.appendChild(document.createElement('br'));
+        var total_so_far_text = document.createElement('span');
+        total_so_far_text.className = 'smallText';
+        total_so_far_text.innerHTML = 'Total So Far:';
+        form.appendChild(total_so_far_text);
+        var currentTotal = document.createElement('b');
+        currentTotal.id = 'currentTotal';
+        currentTotal.value = 0;
+        form.appendChild(currentTotal);
+        form.appendChild(document.createElement('br'));
+        var double_check = document.createElement('span');
+        double_check.className = 'smallText';
+        double_check.innerHTML = 'Please <b>double-check</b> your order before submiting it!';
+        form.appendChild(double_check);
+        form.appendChild(document.createElement('br'));
+        form.appendChild(document.createElement('br'));
+        var submitAndContinueShopping = document.createElement('button');
+        submitAndContinueShopping.className = 'pizzaFormButton';
+        submitAndContinueShopping.value = 'submit';
+        submitAndContinueShopping.innerHTML = 'Submit and Continue Shopping';
+        form.appendChild(submitAndContinueShopping);
+        var submitAndPay = document.createElement('button');
+        submitAndPay.className = 'pizzaFormButton';
+        submitAndPay.value = 'submit';
+        submitAndPay.setAttribute("onclick", `javascript: setCookie('payOnReturn, true, 0.5)`);
+        submitAndPay.innerHTML = 'Submit and Pay';
+        form.appendChild(submitAndPay);
+      });
+    });
+  });
+}
+
+function updateClassroomValue(classroom) {
   document.getElementById('classroom').value = classroom;
 }
 
 function clearRow(row)  {
-  eval("PizzaOrder.row" + row + "A.value = 0;")
-  eval("PizzaOrder.row" + row + "B.value = 0;")
-  eval("PizzaOrder.row" + row + "C.value = 0;")
-  eval("PizzaOrder.row" + row + "checkA.checked = false;")
-  eval("PizzaOrder.row" + row + "checkB.checked = false;")
-  eval("PizzaOrder.row" + row + "checkC.checked = false;")
-  eval("PizzaOrder.row" + row + "checkD.checked = false;")
-  eval("PizzaOrder.row" + row + "checkE.checked = false;")
-  eval("PizzaOrder.row" + row + "checkF.checked = false;")
-  eval("PizzaOrder.row" + row + "checkG.checked = false;")
-  eval("PizzaOrder.row" + row + "checkH.checked = false;")
-
-}
-
-function repeatOrder(rows)  {
-  var updateRows = rows+1;
-  for (i = 1; i < updateRows; i++) { 
-         eval("PizzaOrder.row" + i + "A.value = PizzaOrder.row1A.value");
-         eval("PizzaOrder.row" + i + "B.value = PizzaOrder.row1B.value");
-         eval("PizzaOrder.row" + i + "C.value = PizzaOrder.row1C.value");
-         eval("PizzaOrder.row" + i + "checkA.checked = PizzaOrder.row1checkA.checked");
-         eval("PizzaOrder.row" + i + "checkB.checked = PizzaOrder.row1checkB.checked");
-         eval("PizzaOrder.row" + i + "checkC.checked = PizzaOrder.row1checkC.checked");
-         eval("PizzaOrder.row" + i + "checkD.checked = PizzaOrder.row1checkD.checked");
-         eval("PizzaOrder.row" + i + "checkE.checked = PizzaOrder.row1checkE.checked");
-         eval("PizzaOrder.row" + i + "checkF.checked = PizzaOrder.row1checkF.checked");
-         eval("PizzaOrder.row" + i + "checkG.checked = PizzaOrder.row1checkG.checked");
-         eval("PizzaOrder.row" + i + "checkH.checked = PizzaOrder.row1checkH.checked");
+  var rowData = Array.from(document.getElementsByClassName(`row${row}`));
+  for (i = 0; i < rowData.length; i++) {
+    if (rowData[i].type == 'number') {
+      rowData[i].value = 0;
     }
-}
-
-function computeTotalPrice(rows)  {
-  var loopRows = rows + 1;
-  var price = 0;
-  for (i = 1; i < loopRows; i++) {
-    eval("price = price + (Number(PizzaOrder.row" + i + "A.value) * Number(PizzaOrder.cheesePrice.value))");
-    eval("price = price + (Number(PizzaOrder.row" + i + "B.value) * Number(PizzaOrder.pepperoniPrice.value))");
-    eval("price = price + (Number(PizzaOrder.row" + i + "C.value) * Number(PizzaOrder.pestoPrice.value))");
-    var checked = false
-    eval("checked = PizzaOrder.row" + i + "checkA.checked");
-    if (checked)  {
-      price = price + Number(PizzaOrder.piratesBootyPrice.value);
-    }
-    eval("checked = PizzaOrder.row" + i + "checkB.checked");
-    if (checked)  {
-      price = price + Number(PizzaOrder.veggieStrawsPrice.value);
-    }
-    eval("checked = PizzaOrder.row" + i + "checkC.checked");
-    if (checked)  {
-      price = price + Number(PizzaOrder.animalCrackersPrice.value);
-    }
-    eval("checked = PizzaOrder.row" + i + "checkD.checked");
-    if (checked)  {
-      price = price + Number(PizzaOrder.applesaucePrice.value);
-    }
-    eval("checked = PizzaOrder.row" + i + "checkE.checked");
-    if (checked)  {
-      price = price + Number(PizzaOrder.fruitLeatherPrice.value);
-    }
-    eval("checked = PizzaOrder.row" + i + "checkF.checked");
-    if (checked)  {
-      price = price + Number(PizzaOrder.lemonadePrice.value);
-    }
-    eval("checked = PizzaOrder.row" + i + "checkG.checked");
-    if (checked)  {
-      price = price + Number(PizzaOrder.appleJuicePrice.value);
-    }
-    eval("checked = PizzaOrder.row" + i + "checkH.checked");
-    if (checked)  {
-      price = price + Number(PizzaOrder.garlicKnotPrice.value);
+    else {
+      rowData[i].checked = false;
     }
   }
+  setTotalSoFar();
+}
+
+function repeatOrder()  {
+  var first_week = document.getElementsByClassName(`row0`);
+  var num_weeks = document.getElementsByClassName('lunchOrderTable')[0].rows.length;
+  for (i = 1; i < num_weeks; i++) {
+    var week_row = document.getElementsByClassName(`row${i}`);
+    for (j = 0; j < week_row.length; j++) {
+      if (week_row[j].type == 'number') {
+        week_row[j].value = first_week[j].value;
+      }
+      else {
+        week_row[j].checked = first_week[j].checked;
+      }
+    }
+  }
+  setTotalSoFar();
+}
+
+function computeTotalPrice()  {
+  var rows = document.getElementsByClassName('lunchOrderTable')[0].rows.length - 2;
+  var collums = document.getElementsByClassName(`row0`).length - 2;
+  var price = 0;
+  for (i = 0; i < rows; i++) {
+    for (j = 0; j < collums; j++) {
+      var element = document.getElementById(`row${i}col${j}`);
+      if (element.type == 'number') {
+        price += Number(document.getElementById(`priceCol${j}`).innerHTML.replace('$','')) * Number(element.value);
+      }
+      if (element.type == 'checkbox') {
+        if (element.checked) {
+          price += Number(document.getElementById(`priceCol${j}`).innerHTML.replace('$',''));
+        }
+      }
+    }
+  }
+  price = "$" + price.toFixed(2);
   return price;
 }
 
 function setTotalSoFar() {
-  var price = computeTotalPrice(5); // XXX fix this later
+  var price = computeTotalPrice();
   document.getElementById("currentTotal").innerHTML = price;
 }
 
-function findPrice(rows) {
-  var price = computeTotalPrice(rows);
+function findPrice() {
+  var price = computeTotalPrice();
   prev_price_val = getCookie('price');
   if (prev_price_val !== undefined && prev_price_val !== null) {
     var prevPrice = Number(prev_price_val);
@@ -555,10 +365,8 @@ function loadForm(email_val) {
   else {
     setCookie("email", email_val, 5);
     setCookie("prevEmail", email_val, 360*24*60);
-    document.getElementById("googleFormHolder").innerHTML = PIZZA_FORM_CODE;
+    addFormToPage(email_val);
     console.log('Email val: ' + email_val);
-    document.getElementById('emailInput').value = email_val;
-    document.getElementById('submitionTime').value = Date.now.toString();
 
     //("<iframe style ='border: none;' width=50% height=500px src=https://docs.google.com/a/luebke.us/forms/d/e/1FAIpQLSeLN67cNKxAPe8c1pdC36rfhph1OKX-mAg0X6pdRt2wuXbLGA/viewform?emailAddress=" + email_val + "></iframe><div id='orderOrPay'><br><a>Your Current Total:</a><input type='text' id='price' class='priceBox' disabled='disabled' value='$0.00'><br><button type='button' onclick='location.reload()'>Place another order</button><button type='button' onclick='openPayment(price)'>Pay for your order now</button></div>");
   }

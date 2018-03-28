@@ -1,0 +1,43 @@
+body {
+    margin-top: 0px;
+}
+
+.elements {
+    background-color: darkorange;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    font-family: 'Futura', Helvetica, Arial, sans-serif;
+    position: fixed;
+    padding: 0px;
+}
+
+.formContents {
+    padding-top: 130px
+}
+
+.elementAddButton {
+    background-color: aquamarine;
+    color: black;
+    border: 1px solid black;
+    border-radius: 2px;
+    font-family: 'Futura', Helvetica, Arial, sans-serif;
+    margin: 5px;
+}
+
+.formEditButton {
+    background-color: tomato;
+    color: black;
+    border: 1px solid black;
+    border-radius: 2px;
+    font-family: Courier, 'Courier New', monospace;
+}
+
+.fileAppButton {
+    background-color: dodgerblue;
+    color: black;
+    border: 1px solid black;
+    border-radius: 2px;
+    font-family: 'Futura', Helvetica, Arial, sans-serif;
+    margin: 5px;
+}
