@@ -76,6 +76,39 @@ button:hover {
   text-align: center;
 }
 
+.loadContainer {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(75, 75, 75, 0.5);
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #069181;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 0.2s linear infinite; /* Safari; easter egg */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .lCheck {
   font-size: 75px;
 }

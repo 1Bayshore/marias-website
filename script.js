@@ -1,7 +1,7 @@
 //Thankfully I did not have to write this Moble Page Transfering Code myself; it was on Stack Overflow!
 
 function mobliePageTransfer (page) {
-  var check = moblieCheck()
+  var check = moblieCheck();
   if (check) {
     location.href = "mobile/"+page;
   }
@@ -50,14 +50,25 @@ function initClient() {
   });
 }
 
+function pageLoadError() {
+  document.getElementById('googleFormHolder').innerHTML = `<span>The form load has timed out. Please <a href='javascript:location.reload()'>reload the page</a> to restart.</span>`;
+}
+
 function addFormToPage(email_val) {
-  document.getElementById('googleFormHolder').innerHTML = ``;
+  var timeout = setTimeout(pageLoadError, 10000);
+  var form_holder = document.getElementById('googleFormHolder');
+  form_holder.innerHTML = ``;
+  var loading_container_div = document.createElement('div');
+  loading_container_div.className = 'loadContainer';
+  var loading_div = document.createElement('div');
+  loading_div.className = 'loader';
+  loading_container_div.appendChild(loading_div);
+  form_holder.appendChild(loading_container_div);
   var form = document.createElement('form');
   form.id = "PizzaOrder";
   form.onsubmit = 'findPrice()';
   form.method = "POST";
   form.action = "https://script.google.com/a/luebke.us/macros/s/AKfycbx5wU3Bu4XLHMUbxArP5IVxIdco7XPKpqn6rgaJDjYUW1s25w/exec";
-  document.getElementById('googleFormHolder').appendChild(form);
   var students_name_text = document.createElement('span');
   var students_name_input = document.createElement('input');
   students_name_text.innerHTML = "Student's Name";
@@ -164,9 +175,14 @@ function addFormToPage(email_val) {
           var tr_x = document.createElement('tr');
           var date_td = document.createElement('td');
           var date_span = document.createElement('span');
+          var date_input = document.createElement('input');
+          date_input.type = 'hidden';
+          date_input.name = `row${x}date`;
+          date_input.value = dates_data.values[x][0];
           date_span.className = 'smallText';
           date_span.innerHTML = dates_data.values[x][0];
           date_td.appendChild(date_span);
+          date_td.appendChild(date_input);
           var clear_td = document.createElement('td');
           var clear_button = document.createElement('button');
           clear_button.type = 'button';
@@ -213,6 +229,16 @@ function addFormToPage(email_val) {
         submition_time_input.name = 'submitionTime';
         submition_time_input.value = Date.now.toString();
         form.appendChild(submition_time_input);
+        var number_of_weeks = document.createElement('input');
+        number_of_weeks.type = 'hidden';
+        number_of_weeks.name = 'number_of_weeks';
+        number_of_weeks.value = table.rows.length - 2;
+        form.appendChild(number_of_weeks);
+        var number_of_products = document.createElement('input');
+        number_of_products.type = 'hidden';
+        number_of_products.name = 'number_of_products';
+        number_of_products.value = products_data.values.length;
+        form.appendChild(number_of_products);
         form.appendChild(document.createElement('br'));
         var total_so_far_text = document.createElement('span');
         total_so_far_text.className = 'smallText';
@@ -240,6 +266,9 @@ function addFormToPage(email_val) {
         submitAndPay.setAttribute("onclick", `javascript: setCookie('payOnReturn, true, 0.5)`);
         submitAndPay.innerHTML = 'Submit and Pay';
         form.appendChild(submitAndPay);
+        document.getElementById('googleFormHolder').innerHTML = ``;
+        document.getElementById('googleFormHolder').appendChild(form);
+        clearTimeout(timeout);
       });
     });
   });
