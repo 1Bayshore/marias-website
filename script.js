@@ -95,7 +95,7 @@ function addFormToPage(email_val) {
     for (i = 0; i < range_data.values.length; i++) {
       var radio_btn = document.createElement("input");
       radio_btn.type = 'radio';
-      radio_btn.onchange = function() {updateClassroomValue(`${range_data.values[i][0]}`)};
+      eval(`radio_btn.onchange = function() {updateClassroomValue('${range_data.values[i][0]}')};`);
       radio_btn.id = range_data.values[i][1];
       radio_btn.name = 'classMenu';
       var span = document.createElement('span');
