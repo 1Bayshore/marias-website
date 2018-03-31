@@ -259,11 +259,12 @@ function addFormToPage(email_val) {
         submitAndContinueShopping.className = 'pizzaFormButton';
         submitAndContinueShopping.value = 'submit';
         submitAndContinueShopping.innerHTML = 'Submit and Continue Shopping';
+        submitAndContinueShopping.setAttribute("onclick", `prepForReturn(false)`);
         form.appendChild(submitAndContinueShopping);
         var submitAndPay = document.createElement('button');
         submitAndPay.className = 'pizzaFormButton';
         submitAndPay.value = 'submit';
-        submitAndPay.setAttribute("onclick", `javascript: setCookie('payOnReturn, true, 0.5)`);
+        submitAndPay.setAttribute("onclick", `prepForReturn(true)`);
         submitAndPay.innerHTML = 'Submit and Pay';
         form.appendChild(submitAndPay);
         document.getElementById('googleFormHolder').innerHTML = ``;
@@ -272,6 +273,20 @@ function addFormToPage(email_val) {
       });
     });
   });
+}
+
+function prepForReturn(pay) {
+  if (pay == true) {
+    setCookie('payOnReturn', true, 1);
+    findPrice();
+  }
+  var form_holder = document.getElementById('googleFormHolder');
+  var loading_container_div = document.createElement('div');
+  loading_container_div.className = 'loadContainer';
+  var loading_div = document.createElement('div');
+  loading_div.className = 'loader';
+  loading_container_div.appendChild(loading_div);
+  form_holder.appendChild(loading_container_div);
 }
 
 function updateClassroomValue(classroom) {
@@ -310,7 +325,7 @@ function repeatOrder()  {
 
 function computeTotalPrice()  {
   var rows = document.getElementsByClassName('lunchOrderTable')[0].rows.length - 2;
-  var collums = document.getElementsByClassName(`row0`).length - 2;
+  var collums = document.getElementsByClassName(`row0`).length;
   var price = 0;
   for (i = 0; i < rows; i++) {
     for (j = 0; j < collums; j++) {
@@ -325,19 +340,19 @@ function computeTotalPrice()  {
       }
     }
   }
-  price = "$" + price.toFixed(2);
+  price = price.toFixed(2);
   return price;
 }
 
 function setTotalSoFar() {
-  var price = computeTotalPrice();
+  var price = "$" + computeTotalPrice();
   document.getElementById("currentTotal").innerHTML = price;
 }
 
 function findPrice() {
   var price = computeTotalPrice();
   prev_price_val = getCookie('price');
-  if (prev_price_val !== undefined && prev_price_val !== null) {
+  if (prev_price_val !== undefined && prev_price_val !== null && prev_price_val !== NaN) {
     var prevPrice = Number(prev_price_val);
   }
   else {
