@@ -1,3 +1,4 @@
+//google redirect notice to url: `https://www.google.com/url?warn=true&q=${YOUR_URL_HERE}`
 //Thankfully I did not have to write this Moble Page Transfering Code myself; it was on Stack Overflow!
 
 function mobliePageTransfer (page) {
@@ -57,13 +58,6 @@ function pageLoadError() {
 function addFormToPage(email_val) {
   var timeout = setTimeout(pageLoadError, 10000);
   var form_holder = document.getElementById('googleFormHolder');
-  form_holder.innerHTML = ``;
-  var loading_container_div = document.createElement('div');
-  loading_container_div.className = 'loadContainer';
-  var loading_div = document.createElement('div');
-  loading_div.className = 'loader';
-  loading_container_div.appendChild(loading_div);
-  form_holder.appendChild(loading_container_div);
   var form = document.createElement('form');
   form.id = "PizzaOrder";
   form.onsubmit = 'findPrice()';
@@ -389,31 +383,37 @@ function checkCookie() {
   var email_val = getCookie("email");
   if (email_val !== undefined && email_val !== null) {
     loadForm(email_val);
+    return;
+  }
+  var prev_email_val = getCookie('prevEmail');
+  if (prev_email_val !== undefined && prev_email_val !== null) {
+    document.getElementById('emailcached').value = prev_email_val;
   }
 }
 
 function loadForm(email_val) {
-  /*if (getCookie('payOnReturn') !== undefined && getCookie('payOnReturn') !== null) {
-    var newWin = openPayment();
-    if(!newWin || newWin.closed || typeof newWin.closed=='undefined') {
-      document.getElementById('googleFormHolder').value = '<p>To continue to PayPal, please click below:<br><a href="#" onclick="openPayment()">PayPal</a></p>';
+  var form_holder = document.getElementById('googleFormHolder');
+  form_holder.innerHTML = ``;
+  var loading_container_div = document.createElement('div');
+  loading_container_div.className = 'loadContainer';
+  var loading_div = document.createElement('div');
+  loading_div.className = 'loader';
+  loading_container_div.appendChild(loading_div);
+  form_holder.appendChild(loading_container_div);
+  gapi.load('client', function() {
+    if (getCookie('payOnReturn') !== undefined && getCookie('payOnReturn') !== null) {
+      window.open('payment.html','_top');
     }
-    //setCookie('price', 0, 0);
-  }*/
-  if (getCookie('payOnReturn') !== undefined && getCookie('payOnReturn') !== null) {
-    window.open('payment.html','_top');
-  }
-  if (checkEmailInvoice(email_val)) {
-    var checked = true;
-  }
-  else {
-    setCookie("email", email_val, 5);
-    setCookie("prevEmail", email_val, 360*24*60);
-    addFormToPage(email_val);
-    console.log('Email val: ' + email_val);
-
-    //("<iframe style ='border: none;' width=50% height=500px src=https://docs.google.com/a/luebke.us/forms/d/e/1FAIpQLSeLN67cNKxAPe8c1pdC36rfhph1OKX-mAg0X6pdRt2wuXbLGA/viewform?emailAddress=" + email_val + "></iframe><div id='orderOrPay'><br><a>Your Current Total:</a><input type='text' id='price' class='priceBox' disabled='disabled' value='$0.00'><br><button type='button' onclick='location.reload()'>Place another order</button><button type='button' onclick='openPayment(price)'>Pay for your order now</button></div>");
-  }
+    if (checkEmailInvoice(email_val)) {
+      var checked = true;
+    }
+    else {
+      setCookie("email", email_val, 5);
+      setCookie("prevEmail", email_val, 365*24*60);
+      addFormToPage(email_val);
+      console.log('Email val: ' + email_val);
+    }
+  });
 }
 
 function getScript(source, callback) {
