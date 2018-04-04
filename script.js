@@ -37,6 +37,11 @@ function checkAvalibility(page_name) {
   }
 }
 
+function sessionExpired() {
+  alert('Your session has expired. Click okay to restart.');
+  location.reload();
+}
+
 API_KEY = 'AIzaSyDASqIVw33D0GF9keRiBkwlaouKwJrvMfE';
 
 function handleClientLoad() {
@@ -55,7 +60,7 @@ function pageLoadError() {
   document.getElementById('googleFormHolder').innerHTML = `<span>The form load has timed out. Please <a href='javascript:location.reload()'>reload the page</a> to restart.</span>`;
 }
 
-function addFormToPage(email_val) {
+function addFormToPage(email_val, sessionTimeout) {
   var timeout = setTimeout(pageLoadError, 10000);
   var form_holder = document.getElementById('googleFormHolder');
   var form = document.createElement('form');
@@ -253,12 +258,12 @@ function addFormToPage(email_val) {
         submitAndContinueShopping.className = 'pizzaFormButton';
         submitAndContinueShopping.value = 'submit';
         submitAndContinueShopping.innerHTML = 'Submit and Continue Shopping';
-        submitAndContinueShopping.setAttribute("onclick", `prepForReturn(false)`);
+        submitAndContinueShopping.setAttribute("onclick", `prepForReturn(false, ${sessionTimeout})`);
         form.appendChild(submitAndContinueShopping);
         var submitAndPay = document.createElement('button');
         submitAndPay.className = 'pizzaFormButton';
         submitAndPay.value = 'submit';
-        submitAndPay.setAttribute("onclick", `prepForReturn(true)`);
+        submitAndPay.setAttribute("onclick", `prepForReturn(true, ${sessionTimeout})`);
         submitAndPay.innerHTML = 'Submit and Pay';
         form.appendChild(submitAndPay);
         document.getElementById('googleFormHolder').innerHTML = ``;
@@ -269,7 +274,8 @@ function addFormToPage(email_val) {
   });
 }
 
-function prepForReturn(pay) {
+function prepForReturn(pay, sessionTimeout) {
+  clearTimeout(sessionTimeout);
   if (pay == true) {
     setCookie('payOnReturn', true, 1);
     findPrice();
@@ -408,12 +414,26 @@ function loadForm(email_val) {
       var checked = true;
     }
     else {
-      setCookie("email", email_val, 5);
-      setCookie("prevEmail", email_val, 365*24*60);
-      addFormToPage(email_val);
-      console.log('Email val: ' + email_val);
+      checkIfGapiLoaded(email_val);
     }
   });
+}
+
+function checkIfGapiLoaded(email_val, timeout) {
+  if (timeout === undefined) {
+    var timeout = setTimeout(pageLoadError, 10000);
+  }
+  if (gapi.client.sheets !== undefined) {
+    clearTimeout(timeout);
+    setCookie("email", email_val, 5);
+    setCookie("prevEmail", email_val, 365*24*60);
+    var sessionTimeout = setTimeout(sessionExpired, 5*60*1000);
+    console.log('Email val: ' + email_val);
+    addFormToPage(email_val, sessionTimeout);
+  }
+  else {
+    setTimeout(checkIfGapiLoaded, 1000, email_val, timeout);
+  }
 }
 
 function getScript(source, callback) {
