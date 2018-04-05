@@ -14,6 +14,13 @@ function mobliePageTransfer() {
   }
 }
 
+function displayChildren(elementID) {
+  var children = new Array(document.getElementById(elementID).childNodes);
+  for (i = 0; i < children; i++) {
+    children[i].style = 'display:block';
+  }
+}
+
 function checkAvalibility(page_name) {
   var not_avalible_pages = new Array();
   if (page_name in not_avalible_pages || page_name == not_avalible_pages) {

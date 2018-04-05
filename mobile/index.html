@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to Maria's | Maria's</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
   </head>
   <body>
     <div class="nav">
@@ -13,32 +13,32 @@
         <div class="homeButton" id="currentlySelected">
           <a href="index.html">Home</a>
         </div>
-        <div class="main">
-          <a href="about/pizza-business.html">Maria's Pizza</a>
-        </div>
-        <div class="menuSmallerTexta">
-          <a href="about/pizza-business.html">&nbsp;&nbsp;About</a>
-        </div>
-        <div class="menuSmallerTextb">
-          <a href="order/pizza.html">&nbsp;&nbsp;Order Pizza</a>
-        </div>
-        <div class="main">
-          <a href="about/pie-business.html">MS Pie Business</a>
-        </div>
-        <div class="menuSmallerTexta">
-          <a href="about/pie-business.html">&nbsp;&nbsp;About</a>
-        </div>
-        <div class="menuSmallerTextb">
-          <a href="order/pie/html">&nbsp;&nbsp;Order Pie</a>
+        <div id='pizzaNav' class="main">
+          <button onclick='displayChildren("pizzaNav")'>Maria's Pizza</button>
+          <div class="menuSmallerText">
+            <a href="about/pizza-business.html">&nbsp;&nbsp;About</a>
+          </div>
+          <div class="menuSmallerText">
+            <a href="order/pizza.html">&nbsp;&nbsp;Order Pizza</a>
+          </div>
         </div>
         <div class="main">
-          <a href="about/marias-store.html">Maria's Store</a>
+          <button id='pieNav' onclick='displayChildren("pieNav")'>MS Pie Business</button>
+          <div class="menuSmallerText">
+            <a href="about/pie-business.html">&nbsp;&nbsp;About</a>
+          </div>
+          <div class="menuSmallerText">
+            <a href="order/pie/html">&nbsp;&nbsp;Order Pie</a>
+          </div>
         </div>
-        <div class="menuSmallerTexta">
-          <a href="about/marias-store">&nbsp;&nbsp;About</a>
-        </div>
-        <div class="menuSmallerTextb">
-          <a href="featuredproduct.html">&nbsp;&nbsp;Featured Product<br>&nbsp;&nbsp;&nbsp;of the Week</a>
+        <div id='storeNav' class="main">
+          <button onclick='displayChildren("storeNav")'>Maria's Store</button>
+          <div class="menuSmallerText">
+            <a href="about/marias-store">&nbsp;&nbsp;About</a>
+          </div>
+          <div class="menuSmallerText">
+            <a href="featuredproduct.html">&nbsp;&nbsp;Featured Product<br>&nbsp;&nbsp;&nbsp;of the Week</a>
+          </div>
         </div>
       </div>
       <button class="menuExpand" type="button" onclick="document.getElementById('menu').style.display = 'block';">

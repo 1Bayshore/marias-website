@@ -1,47 +1,28 @@
-/***************************
-This is a Cascading Style Sheet (CSS), which describes rules for styling HTML markup (and this is a comment, which you can delete).
-
-To use this file, link it to your markup by placing a <link> in the <head> of your HTML file:
-
-  <head>
-    <link rel="stylesheet" href="style.css">
-
-replacing "style.css" with the name of this CSS file.
-
-Learn more about CSS at
-
-https://developer.mozilla.org/en-US/docs/Web/Guide/CSS
-***************************/
-
-body {
-  background-color: #ddffdd
-}
-
 h1 {
-  font-family: "Verdanda", sans-serif;
+  font-family: "Futura", sans-serif;
 }
 
 h2 {
-  font-family: "Verdanda", sans-serif;
+  font-family: "Futura", sans-serif;
 }
 
 p {
-  font-family: "Courier New", monospace;
+  font-family: "Goudy Old Style", serif;
 }
 
 a {
-  font-family: "Courier New", monospace
+  font-family: "Goudy Old Style", serif;
 }
 
 button {
   border: 1px solid black;
   background-color: white;
-  font-family: "Courier New", monospace;
+  font-family: "Goudy Old Style", serif;
   font-size: 14px;
 }
 
 .menuExpand {
-  font-family: "Courier New", monospace;
+  font-family: "Goudy Old Style", serif;
   background-color: black;
   color: white;
   border: none;
@@ -53,53 +34,47 @@ button {
   display: none;
   position: absolute;
   float: left;
-  background-color: #00dd00;
+  background-color: #069181;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .menu a{
   text-decoration: none;
   color: black;
-  font-family: "Courier New", sans-serif;
+  font-family: "Goudy Old Style", serif;
 }
 
 .menu{
   text-decoration: none;
   color: black;
-  font-family: "Courier New", sans-serif;
+  font-family: "Futura", serif;
   padding: 5px;
 }
 
 .homeButton {
   font-size: 16px;
-  background-color: orange;
+  background-color: #ccad00;
   border: solid black;
   border-width: 1px;
 }
 
 .main {
   font-size: 16px;
-  background-color: #00ff00;
+  background-color: #5effe3;
   border: solid black;
   border-width: 1px;
 }
 
 #currentlySelected a {
-  color: red;
-  border: solid red;
-  border-width: 1px
+  border: solid #a40000;
+  border-width: 1px;
+  border-radius: 30%;
 }
 
-.menuSmallerTexta {
+.menuSmallerText {
+  display: none;
   font-size: 12px;
   background-color: #00bb00;
   border-width: 0 1px;
   border: solid black;
-}
-
-.menuSmallerTextb {
-  font-size: 12px;
-  background-color: #008822;
-  border: solid black;
-  border-width: 1px;
 }
