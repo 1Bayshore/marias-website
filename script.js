@@ -177,16 +177,27 @@ function addFormToPage(email_val, sessionTimeout) {
         }
         table.appendChild(tr_titles);
         table.appendChild(tr_prices);
-        for (x = 0; x < dates_data.values.length; x++) {
+        var date_len = dates_data.values.length;
+        var toAdd = 0;
+        for (x = 0; x < date_len; x++) {
+          // if the current date is past the cutoff date (stored Friday date - 1 day of milliseconds), disable it
+          var now = new Date().getTime();
+          var cutoff_date = new Date(dates_data.values[x + toAdd][0]).getTime() - 1000*60*60*24;
+          if (now > cutoff_date) {
+            x -= 1;
+            date_len -= 1;
+            toAdd += 1;
+            continue;
+          }
           var tr_x = document.createElement('tr');
           var date_td = document.createElement('td');
           var date_span = document.createElement('span');
           var date_input = document.createElement('input');
           date_input.type = 'hidden';
           date_input.name = `row${x}date`;
-          date_input.value = dates_data.values[x][0];
+          date_input.value = dates_data.values[x + toAdd][0];
           date_span.className = 'smallText';
-          date_span.innerHTML = dates_data.values[x][0];
+          date_span.innerHTML = dates_data.values[x + toAdd][0];
           date_td.appendChild(date_span);
           date_td.appendChild(date_input);
           var clear_td = document.createElement('td');
@@ -204,6 +215,7 @@ function addFormToPage(email_val, sessionTimeout) {
               td_innerHTML.onchange = function() {setTotalSoFar()};
               td_innerHTML.type = 'number';
               td_innerHTML.value = 0;
+              td_innerHTML.min = 0;
               td_innerHTML.className = `row${x}`
               td_innerHTML.name = `row${x}col${y}`;
               td_innerHTML.id = `row${x}col${y}`;
@@ -338,6 +350,9 @@ function computeTotalPrice()  {
     for (j = 0; j < collums; j++) {
       var element = document.getElementById(`row${i}col${j}`);
       if (element.type == 'number') {
+        if (element.value < 0 || element.value.toString().includes('.')) {
+          element.value = 0;
+        }
         price += Number(document.getElementById(`priceCol${j}`).innerHTML.replace('$','')) * Number(element.value);
       }
       if (element.type == 'checkbox') {
