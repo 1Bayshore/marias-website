@@ -521,7 +521,7 @@ function loadPriceFromUrl() {
 
 function loadPriceFromCookies() {
   var price = getCookie('price');
-  document.getElementById('pizzaPriceBox').value = '$' + price;
+  document.getElementById('pizzaPriceBox').value = '$' + Number(price).toFixed(2);
   document.getElementById('paypalPrice_secure').value = price;
   var email = getCookie('email');
   document.getElementById('emailOrderNumber').value = email + "," + Date.now().toString();
