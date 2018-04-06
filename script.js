@@ -276,13 +276,17 @@ function addFormToPage(email_val, sessionTimeout) {
         var submitAndContinueShopping = document.createElement('button');
         submitAndContinueShopping.className = 'pizzaFormButton';
         submitAndContinueShopping.value = 'submit';
+        submitAndContinueShopping.disabled = 'disabled';
         submitAndContinueShopping.innerHTML = 'Submit and Continue Shopping';
+        submitAndContinueShopping.id = 'continueShopping';
         submitAndContinueShopping.setAttribute("onclick", `prepForReturn(false, ${sessionTimeout})`);
         form.appendChild(submitAndContinueShopping);
         var submitAndPay = document.createElement('button');
         submitAndPay.className = 'pizzaFormButton';
         submitAndPay.value = 'submit';
+        submitAndPay.disabled = 'disabled';
         submitAndPay.setAttribute("onclick", `prepForReturn(true, ${sessionTimeout})`);
+        submitAndPay.id = 'submitAndPay';
         submitAndPay.innerHTML = 'Submit and Pay';
         form.appendChild(submitAndPay);
         document.getElementById('googleFormHolder').innerHTML = ``;
@@ -369,6 +373,14 @@ function computeTotalPrice()  {
 function setTotalSoFar() {
   var price = "$" + computeTotalPrice();
   document.getElementById("currentTotal").innerHTML = price;
+  if (Number(price.replace('$','')) > 0 && document.getElementById('PizzaOrder').studentsName !== '' && document.getElementById('classroom').value !== '') {
+    document.getElementById('continueShopping').disabled = '';
+    document.getElementById('submitAndPay').disabled = '';
+  }
+  else {
+    document.getElementById('continueShopping').disabled = 'disabled';
+    document.getElementById('submitAndPay').disabled = 'disabled';
+  }
 }
 
 function findPrice() {

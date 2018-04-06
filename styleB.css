@@ -61,7 +61,7 @@ button {
   padding: 3px;
 }
 
-button:hover {
+button:hover:enabled {
   background-color: #069181;
   border-color: #000000
 }
