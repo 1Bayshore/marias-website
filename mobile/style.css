@@ -36,19 +36,16 @@ button {
   float: left;
   background-color: #069181;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  text-decoration: none;
+  color: black;
+  font-family: "Futura", serif;
+  padding: 5px;
 }
 
 .menu a{
   text-decoration: none;
   color: black;
   font-family: "Goudy Old Style", serif;
-}
-
-.menu{
-  text-decoration: none;
-  color: black;
-  font-family: "Futura", serif;
-  padding: 5px;
 }
 
 .homeButton {
@@ -68,13 +65,20 @@ button {
 #currentlySelected a {
   border: solid #a40000;
   border-width: 1px;
-  border-radius: 30%;
+}
+
+.main:focus .menuSmallerText{
+  display: block;
 }
 
 .menuSmallerText {
   display: none;
   font-size: 12px;
-  background-color: #00bb00;
+  background-color: #069181;
   border-width: 0 1px;
-  border: solid black;
+  border: 1px solid black;
+}
+
+.show {
+  display: block;
 }

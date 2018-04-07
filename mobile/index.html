@@ -7,37 +7,51 @@
     <link rel="stylesheet" href="style.css">
     <script src="../script.js"></script>
   </head>
-  <body>
+  <body onload="window.onclick = function(e) {checkIfMenuClose(e)}">
     <div class="nav">
       <div class="menu" id="menu">
-        <div class="homeButton" id="currentlySelected">
-          <a href="index.html">Home</a>
-        </div>
-        <div id='pizzaNav' class="main">
-          <button onclick='displayChildren("pizzaNav")'>Maria's Pizza</button>
+        <a href="index.html">
+          <div class="homeButton">
+            Home
+          </div>
+        </a>
+        <div id='m1' class="main" onclick="displayChildren('m1')">
+          Maria's Pizza
           <div class="menuSmallerText">
-            <a href="about/pizza-business.html">&nbsp;&nbsp;About</a>
+            <a href="about/pizza-business.html">
+              <div>&nbsp;&nbsp;About</div>
+            </a>
           </div>
           <div class="menuSmallerText">
-            <a href="order/pizza.html">&nbsp;&nbsp;Order Pizza</a>
-          </div>
-        </div>
-        <div class="main">
-          <button id='pieNav' onclick='displayChildren("pieNav")'>MS Pie Business</button>
-          <div class="menuSmallerText">
-            <a href="about/pie-business.html">&nbsp;&nbsp;About</a>
-          </div>
-          <div class="menuSmallerText">
-            <a href="order/pie/html">&nbsp;&nbsp;Order Pie</a>
+            <a href="order/pizza.html">
+              <div>&nbsp;&nbsp;Order Pizza</div>
+            </a>
           </div>
         </div>
-        <div id='storeNav' class="main">
-          <button onclick='displayChildren("storeNav")'>Maria's Store</button>
+        <div id="m2" class="main" onclick="displayChildren('m2')">
+          MS Pie Business
           <div class="menuSmallerText">
-            <a href="about/marias-store">&nbsp;&nbsp;About</a>
+            <a href="about/pie-business.html">
+              <div>&nbsp;&nbsp;About</div>
+            </a>
           </div>
           <div class="menuSmallerText">
-            <a href="featuredproduct.html">&nbsp;&nbsp;Featured Product<br>&nbsp;&nbsp;&nbsp;of the Week</a>
+            <a href="order/pie.html">
+              <div>&nbsp;&nbsp;Order Pie</div>
+            </a>
+          </div>
+        </div>
+        <div id='m3' class="main" onclick="displayChildren('m3')">
+          Maria's Store
+          <div class="menuSmallerText">
+            <a href="about/marias-store.html">
+              <div>&nbsp;&nbsp;About</div>
+            </a>
+          </div>
+          <div class="menuSmallerText">
+            <a href="featuredproduct.html">
+              <div>&nbsp;&nbsp;Featured Product<br>&nbsp;&nbsp;&nbsp;of the Week</div>
+            </a>
           </div>
         </div>
       </div>

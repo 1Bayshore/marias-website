@@ -15,9 +15,41 @@ function mobliePageTransfer() {
 }
 
 function displayChildren(elementID) {
-  var children = new Array(document.getElementById(elementID).childNodes);
-  for (i = 0; i < children; i++) {
-    children[i].style = 'display:block';
+  var elementsToLoop = document.getElementsByClassName('menuSmallerText');
+  for (i = 0; i < elementsToLoop.length; i++) {
+    if (elementsToLoop[i].parentElement.id == elementID) {
+      elementsToLoop[i].style = 'display:block';
+    }
+    else {
+      elementsToLoop[i].style = '';
+    }
+  }
+}
+
+function continueWithPrevEmail() {
+  var prevEmail = getCookie('prevEmail');
+  if (prevEmail !== undefined) {
+    return `<span>${prevEmail}</span>
+    <input type='hidden' name='emailCached' value='${prevEmail}'>
+    <button onclick='loadForm(${prevEmail},"mobile")'>Continue</button>
+    <br>
+    <a href='javascript: editableEmail('${prevEmail}')>Enter a different email address</a>`;
+  }
+  return editableEmail();
+}
+
+function editableEmail(prevEmail) {
+  if (prevEmail == undefined || prevEmail == null) {
+    prevEmail = '';
+  }
+  document.getElementById("googleFormHolder").innerHTML = `<input type='email' id='emailCached' value='${prevEmail}>
+  <button type='button' onclick='loadForm(emailCached.value, "mobile")'>Continue</button>`;
+}
+
+function checkIfMenuClose(event) {
+  var menu = document.getElementById('menu');
+  if (menu.offsetParent !== null && menu.offsetParent !== undefined && !event.target.matches('.menu') && !event.target.matches('.menuExpand') && !event.target.matches('.main')) {
+    menu.style = 'display:none';
   }
 }
 
@@ -264,8 +296,14 @@ function addFormToPage(email_val, sessionTimeout) {
         form.appendChild(total_so_far_text);
         var currentTotal = document.createElement('b');
         currentTotal.id = 'currentTotal';
-        currentTotal.value = 0;
+        currentTotal.innerHTML = "$0.00";
         form.appendChild(currentTotal);
+        var currentTotalHiddenInput = document.createElement('input');
+        currentTotalHiddenInput.type = 'hidden';
+        currentTotalHiddenInput.value = 0;
+        currentTotalHiddenInput.name = 'totalForThisOrder';
+        currentTotalHiddenInput.id = 'totalForThisOrder';
+        form.appendChild(currentTotalHiddenInput);
         form.appendChild(document.createElement('br'));
         var double_check = document.createElement('span');
         double_check.className = 'smallText';
@@ -301,8 +339,8 @@ function prepForReturn(pay, sessionTimeout) {
   clearTimeout(sessionTimeout);
   if (pay == true) {
     setCookie('payOnReturn', true, 1);
-    findPrice();
   }
+  findPrice();
   var form_holder = document.getElementById('googleFormHolder');
   var loading_container_div = document.createElement('div');
   loading_container_div.className = 'loadContainer';
@@ -394,6 +432,7 @@ function findPrice() {
   }
   var newPrice = Number(price);
   setCookie("price", newPrice+prevPrice, 5);
+  document.getElementById('totalForThisOrder').value = newPrice;
 }
 
 function setCookie(cname, cvalue, exminutes) {
@@ -431,7 +470,7 @@ function checkCookie() {
   }
 }
 
-function loadForm(email_val) {
+function loadForm(email_val, mobile) {
   var form_holder = document.getElementById('googleFormHolder');
   form_holder.innerHTML = ``;
   var loading_container_div = document.createElement('div');

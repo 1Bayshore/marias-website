@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maria's Store | Maria's</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../../script.js"></script>
+  </head>
+  <body onload="window.onclick = function(e) {checkIfMenuClose(e)}">
+        <div class="nav">
+          <div class="menu" id="menu">
+            <a href="../index.html">
+              <div class="homeButton">
+                Home
+              </div>
+            </a>
+            <div id='m1' class="main" onclick="displayChildren('m1')">
+              Maria's Pizza
+              <div class="menuSmallerText">
+                <a href="pizza-business.html">
+                  <div>&nbsp;&nbsp;About</div>
+                </a>
+              </div>
+              <div class="menuSmallerText">
+                <a href="../order/pizza.html">
+                  <div>&nbsp;&nbsp;Order Pizza</div>
+                </a>
+              </div>
+            </div>
+            <div id="m2" class="main" onclick="displayChildren('m2')">
+              MS Pie Business
+              <div class="menuSmallerText">
+                <a href="pie-business.html">
+                  <div>&nbsp;&nbsp;About</div>
+                </a>
+              </div>
+              <div class="menuSmallerText">
+                <a href="../order/pie.html">
+                  <div>&nbsp;&nbsp;Order Pie</div>
+                </a>
+              </div>
+            </div>
+            <div id='m3' class="main" onclick="displayChildren('m3')">
+              Maria's Store
+              <div class="menuSmallerText">
+                <a href="marias-store.html">
+                  <div>&nbsp;&nbsp;About</div>
+                </a>
+              </div>
+              <div class="menuSmallerText">
+                <a href="../featuredproduct.html">
+                  <div>&nbsp;&nbsp;Featured Product<br>&nbsp;&nbsp;&nbsp;of the Week</div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <button class="menuExpand" type="button" onclick="document.getElementById('menu').style.display = 'block';">
+            Menu
+          </button>
+        </div>
+    <h2 id="toptext">
+      About
+    </h2>
+    <p>
+      Maria's is a local store at <a href="http://mountaintopmontessori.org/">Mountaintop Montessori</a> in <a href="https://www.google.com/maps/place/Mountaintop+Montessori/@38.031485,-78.443635,15z/data=!4m5!3m4!1s0x0:0x8cf219a23969c914!8m2!3d38.031485!4d-78.443635">Charlottesville, VA</a>.
+    </p>
+  </body>
+</html>
