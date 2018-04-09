@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styleB.css">
+        <script type="text/javascript">
+        function redirectCode() {
+            var countdown = setInterval(reduceCountdown, 1000);
+        }
+        function windowOpen() {
+            window.open('index.html', '_top', replace=true);
+        }
+        function reduceCountdown() {
+            var current_count = Number(document.getElementById('countdown').innerHTML) - 1;
+            if (current_count === 0) {
+                windowOpen();
+            }
+            document.getElementById('countdown').innerHTML = current_count;
+        }
+        </script>
+    </head>
+    <body onload="redirectCode()">
+        <h1>
+            New Page Avalible
+        </h1>
+        <p>
+            We have changed the location of our webpage. Please <a href="#" onclick="windowOpen()">click here</a> to visit our newly redesigned experience.
+            <br>
+            <br>
+            (If you do not click, you will be redirected automatically in <span id="countdown">10</span> seconds.)
+        </p>
+    </body>
+</html>
