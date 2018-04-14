@@ -3,11 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Maria's | Maria's</title>
+    <title>Order Pizza | Maria's</title>
     <link rel="stylesheet" href="../style.css">
     <script src="../../script.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+    onload="this.onload=function(){};handleClientLoad()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
   </head>
-  <body onload="window.onclick = function(e) {checkIfMenuClose(e)}">
+  <body onload="window.onclick = function(e) {checkIfMenuClose(e)}; checkCookie('mobile');">
       <div class="nav">
         <div class="menu" id="menu">
           <a href="../index.html">
@@ -62,9 +66,13 @@
     <h2 id="toptext">
       Order Pizza
     </h2>
+    <p>The exclusive mobile experience is currently under construction. Please <a href="../../order/pizza.html">click here</a> to visit the order form. <b>Desktop browser use recomended.</b></p>
     <div id="googleFormHolder">
-        <p>The exclusive mobile experience is currently under construction. Please <a href="../../order/pizza.html">click here</a> to visit the order form. <b>Desktop browser use recomended.</b></p>
-        <p>To view this as a developer, please <a href="#" onclick="document.getElementById('googleFormHolder').innerHTML = continueWithPrevEmail()">click here</a> and follow the login steps.</p>
+        <span class='smallText' id='emailView'></span>
+        <input type='hidden' name='emailcached' id='emailcached'>
+        <button onclick='loadForm(document.getElementById(`emailcached`).value,"mobile")'>Continue</button>
+        <br>
+        <a href='javascript: editableEmail()'>Enter a different email address</a>
     </div>
   </body>
 </html>

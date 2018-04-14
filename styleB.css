@@ -108,6 +108,11 @@ button:hover:enabled {
   100% { transform: rotate(360deg); }
 }
 
+.pageContent {
+  text-decoration: none;
+  color: solid black;
+}
+
 .lCheck {
   font-size: 75px;
 }

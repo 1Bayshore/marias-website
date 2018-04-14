@@ -30,20 +30,18 @@ function continueWithPrevEmail() {
   var prevEmail = getCookie('prevEmail');
   if (prevEmail !== undefined) {
     return `<span>${prevEmail}</span>
-    <input type='hidden' name='emailCached' value='${prevEmail}'>
-    <button onclick='loadForm(${prevEmail},"mobile")'>Continue</button>
+    <input type='hidden' name='emailcached' value='${prevEmail}'>
+    <button onclick='loadForm("${prevEmail}","mobile")'>Continue</button>
     <br>
     <a href='javascript: editableEmail('${prevEmail}')>Enter a different email address</a>`;
   }
   return editableEmail();
 }
 
-function editableEmail(prevEmail) {
-  if (prevEmail == undefined || prevEmail == null) {
-    prevEmail = '';
-  }
-  document.getElementById("googleFormHolder").innerHTML = `<input type='email' id='emailCached' value='${prevEmail}>
-  <button type='button' onclick='loadForm(emailCached.value, "mobile")'>Continue</button>`;
+function editableEmail() {
+  var prevEmail = getCookie('prevEmail');
+  document.getElementById("googleFormHolder").innerHTML = `<input type='email' name='emailcached' id='emailcached' value='${prevEmail}'>
+  <button type='button' onclick='loadForm(emailcached.value, "mobile")'>Continue</button>`;
 }
 
 function checkIfMenuClose(event) {
@@ -81,25 +79,25 @@ function sessionExpired() {
   location.reload();
 }
 
+
 API_KEY = 'AIzaSyDASqIVw33D0GF9keRiBkwlaouKwJrvMfE';
-
-function handleClientLoad() {
-  gapi.load('client:auth2', initClient);
-}
-
-function initClient() {
-  gapi.client.init({
-    apiKey: API_KEY,
-    discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
-    scope: "https://www.googleapis.com/auth/spreadsheets.readonly"
-  });
-}
+ 
+ function handleClientLoad() {
+   gapi.load('client:auth2', initClient);
+ }
+ 
+ function initClient() {
+   gapi.client.init({
+     'apiKey': API_KEY,
+     'discoveryDocs': ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
+   });
+ }
 
 function pageLoadError() {
   document.getElementById('googleFormHolder').innerHTML = `<span>The form load has timed out. Please <a href='javascript:location.reload()'>reload the page</a> to restart.</span>`;
 }
 
-function addFormToPage(email_val, sessionTimeout) {
+function addFormToPage(email_val, sessionTimeout, mobile) {
   var timeout = setTimeout(pageLoadError, 10000);
   var form_holder = document.getElementById('googleFormHolder');
   var form = document.createElement('form');
@@ -153,120 +151,222 @@ function addFormToPage(email_val, sessionTimeout) {
         range: 'Products!A2:F',
       }).then(function(response) {
         var products_data = response.result;
-        var title = document.createElement('span');
-        title.innerHTML = "Pizza Lunch Order";
-        form.appendChild(title);
-        form.appendChild(document.createElement('br'));
-        var button = document.createElement('button');
-        button.type = 'button';
-        button.setAttribute("onclick",'repeatOrder()');
-        button.innerHTML = 'Apply first week order to all other weeks';
-        form.appendChild(button);
-        var table = document.createElement('table');
-        table.className = "lunchOrderTable";
-        table.border = 1;
-        var tr_titles = document.createElement('tr');
-        var tr_prices = document.createElement('tr');
-        var title_date_td = document.createElement('td');
-        var date_td_span = document.createElement('span');
-        date_td_span.className = 'smallText';
-        date_td_span.innerHTML = 'Date';
-        title_date_td.appendChild(date_td_span);
-        tr_titles.appendChild(title_date_td);
-        var clear_row_td = document.createElement('td');
-        var clear_row_span = document.createElement('span');
-        clear_row_span.className = 'smallText';
-        clear_row_span.innerHTML = 'Clear Order';
-        clear_row_td.appendChild(clear_row_span);
-        tr_titles.appendChild(clear_row_td);
-        var price_td = document.createElement('td');
-        var price_span = document.createElement('span');
-        price_span.className = 'smallText';
-        price_span.innerHTML = 'Price:';
-        price_td.appendChild(price_span);
-        tr_prices.appendChild(price_td);
-        tr_prices.appendChild(document.createElement('td'));
-        for (i = 0; i < products_data.values.length; i++) {
-          var td_title = document.createElement('td');
-          var span_title = document.createElement('span');
-          span_title.className = 'smallText';
-          if (products_data.values[i][1] == 'Pizza') {
-            var title_innerHTML = `Slices ${products_data.values[i][0]} Pizza`;
-          }
-          else {
-            var title_innerHTML = products_data.values[i][0];
-          }
-          span_title.innerHTML = title_innerHTML;
-          td_title.appendChild(span_title);
-          tr_titles.appendChild(td_title);
-          var td_price = document.createElement('td');
-          var span_price = document.createElement('span');
-          span_price.className = 'smallText';
-          span_price.innerHTML = products_data.values[i][4];
-          span_price.id = `priceCol${i}`;
-          td_price.appendChild(span_price);
-          tr_prices.appendChild(td_price);
-        }
-        table.appendChild(tr_titles);
-        table.appendChild(tr_prices);
-        var date_len = dates_data.values.length;
-        var toAdd = 0;
-        for (x = 0; x < date_len; x++) {
-          // if the current date is past the cutoff date (stored Friday date - 1 day of milliseconds), disable it
-          var now = new Date().getTime();
-          var cutoff_date = new Date(dates_data.values[x + toAdd][0]).getTime() - 1000*60*60*24;
-          if (now > cutoff_date) {
-            x -= 1;
-            date_len -= 1;
-            toAdd += 1;
-            continue;
-          }
-          var tr_x = document.createElement('tr');
-          var date_td = document.createElement('td');
-          var date_span = document.createElement('span');
-          var date_input = document.createElement('input');
-          date_input.type = 'hidden';
-          date_input.name = `row${x}date`;
-          date_input.value = dates_data.values[x + toAdd][0];
-          date_span.className = 'smallText';
-          date_span.innerHTML = dates_data.values[x + toAdd][0];
-          date_td.appendChild(date_span);
-          date_td.appendChild(date_input);
-          var clear_td = document.createElement('td');
-          var clear_button = document.createElement('button');
-          clear_button.type = 'button';
-          clear_button.setAttribute("onclick",`clearRow(${x})`);
-          clear_button.innerHTML = 'Clear';
-          clear_td.appendChild(clear_button);
-          tr_x.appendChild(date_td);
-          tr_x.appendChild(clear_td);
-          for (y = 0; y < products_data.values.length; y++) {
-            var td_cell = document.createElement('td');
-            if (products_data.values[y][1] == 'Pizza') {
-              var td_innerHTML = document.createElement('input');
-              td_innerHTML.onchange = function() {setTotalSoFar()};
-              td_innerHTML.type = 'number';
-              td_innerHTML.value = 0;
-              td_innerHTML.min = 0;
-              td_innerHTML.className = `row${x}`
-              td_innerHTML.name = `row${x}col${y}`;
-              td_innerHTML.id = `row${x}col${y}`;
+        if (mobile !== true) {
+          var title = document.createElement('span');
+          title.innerHTML = "Pizza Lunch Order";
+          form.appendChild(title);
+          form.appendChild(document.createElement('br'));
+          var button = document.createElement('button');
+          button.type = 'button';
+          button.setAttribute("onclick",'repeatOrder()');
+          button.innerHTML = 'Apply first week order to all other weeks';
+          form.appendChild(button);
+          var table = document.createElement('table');
+          table.className = "lunchOrderTable";
+          table.border = 1;
+          var tr_titles = document.createElement('tr');
+          var tr_prices = document.createElement('tr');
+          var title_date_td = document.createElement('td');
+          var date_td_span = document.createElement('span');
+          date_td_span.className = 'smallText';
+          date_td_span.innerHTML = 'Date';
+          title_date_td.appendChild(date_td_span);
+          tr_titles.appendChild(title_date_td);
+          var clear_row_td = document.createElement('td');
+          var clear_row_span = document.createElement('span');
+          clear_row_span.className = 'smallText';
+          clear_row_span.innerHTML = 'Clear Order';
+          clear_row_td.appendChild(clear_row_span);
+          tr_titles.appendChild(clear_row_td);
+          var price_td = document.createElement('td');
+          var price_span = document.createElement('span');
+          price_span.className = 'smallText';
+          price_span.innerHTML = 'Price:';
+          price_td.appendChild(price_span);
+          tr_prices.appendChild(price_td);
+          tr_prices.appendChild(document.createElement('td'));
+          for (i = 0; i < products_data.values.length; i++) {
+            var td_title = document.createElement('td');
+            var span_title = document.createElement('span');
+            span_title.className = 'smallText';
+            if (products_data.values[i][1] == 'Pizza') {
+              var title_innerHTML = `Slices ${products_data.values[i][0]} Pizza`;
             }
             else {
-              var td_innerHTML = document.createElement('input');
-              td_innerHTML.onchange = function() {setTotalSoFar()};
-              td_innerHTML.type = 'checkbox';
-              td_innerHTML.className = 'lCheck';
-              td_innerHTML.className = `row${x}`
-              td_innerHTML.name = `row${x}col${y}`;
-              td_innerHTML.id = `row${x}col${y}`;
+              var title_innerHTML = products_data.values[i][0];
             }
-            td_cell.appendChild(td_innerHTML);
-            tr_x.appendChild(td_cell);
+            span_title.innerHTML = title_innerHTML;
+            td_title.appendChild(span_title);
+            tr_titles.appendChild(td_title);
+            var td_price = document.createElement('td');
+            var span_price = document.createElement('span');
+            span_price.className = 'smallText';
+            span_price.innerHTML = products_data.values[i][4];
+            span_price.id = `priceCol${i}`;
+            td_price.appendChild(span_price);
+            tr_prices.appendChild(td_price);
           }
-          table.appendChild(tr_x);
+          table.appendChild(tr_titles);
+          table.appendChild(tr_prices);
+          var date_len = dates_data.values.length;
+          var toAdd = 0;
+          for (week= 0; week< date_len; week++) {
+            // if the current date is past the cutoff date (stored Friday date - 1 day of milliseconds), disable it
+            var now = new Date().getTime();
+            var cutoff_date = new Date(dates_data.values[week+ toAdd][0]).getTime() - 1000*60*60*24;
+            if (now > cutoff_date) {
+              week-= 1;
+              date_len -= 1;
+              toAdd += 1;
+              continue;
+            }
+            var tr_week= document.createElement('tr');
+            var date_td = document.createElement('td');
+            var date_span = document.createElement('span');
+            var date_input = document.createElement('input');
+            date_input.type = 'hidden';
+            date_input.name = `row${week}date`;
+            date_input.value = dates_data.values[week+ toAdd][0];
+            date_span.className = 'smallText';
+            date_span.innerHTML = dates_data.values[week+ toAdd][0];
+            date_td.appendChild(date_span);
+            date_td.appendChild(date_input);
+            var clear_td = document.createElement('td');
+            var clear_button = document.createElement('button');
+            clear_button.type = 'button';
+            clear_button.setAttribute("onclick",`clearRow(${week})`);
+            clear_button.innerHTML = 'Clear';
+            clear_td.appendChild(clear_button);
+            tr_week.appendChild(date_td);
+            tr_week.appendChild(clear_td);
+            for (y = 0; y < products_data.values.length; y++) {
+              var td_cell = document.createElement('td');
+              if (products_data.values[y][1] == 'Pizza') {
+                var td_innerHTML = document.createElement('input');
+                td_innerHTML.onchange = function() {setTotalSoFar()};
+                td_innerHTML.type = 'number';
+                td_innerHTML.value = 0;
+                td_innerHTML.min = 0;
+                td_innerHTML.className = `row${week}`
+                td_innerHTML.name = `row${week}col${y}`;
+                td_innerHTML.id = `row${week}col${y}`;
+              }
+              else {
+                var td_innerHTML = document.createElement('input');
+                td_innerHTML.onchange = function() {setTotalSoFar()};
+                td_innerHTML.type = 'checkbox';
+                td_innerHTML.className = 'lCheck';
+                td_innerHTML.className = `row${week}`
+                td_innerHTML.name = `row${week}col${y}`;
+                td_innerHTML.id = `row${week}col${y}`;
+              }
+              td_cell.appendChild(td_innerHTML);
+              tr_week.appendChild(td_cell);
+            }
+            table.appendChild(tr_week);
+          }
+          var num_weeks = table.rows.length - 2;
+          form.appendChild(table);
         }
-        form.appendChild(table);
+        else {
+          var weeks_div = document.createElement('div');
+          weeks_div.border = 1;
+          var date_len = dates_data.values.length;
+          var toAdd = 0;
+          for (week= 0; week< date_len; week++) {
+            // if the current date is past the cutoff date (stored Friday date - 1 day of milliseconds), remove it
+            var now = new Date().getTime();
+            var cutoff_date = new Date(dates_data.values[week+ toAdd][0]).getTime() - 1000*60*60*24;
+            if (now > cutoff_date) {
+              week-= 1;
+              date_len -= 1;
+              toAdd += 1;
+              continue;
+            }
+            var div_week= document.createElement('div');
+            if (week== 0) {
+              var button = document.createElement('button');
+              button.type = 'button';
+              button.setAttribute("onclick",'repeatOrder()');
+              button.innerHTML = 'Make this order for all weeks';
+              div_week.appendChild(button);
+            }
+            var date_span = document.createElement('span');
+            var date_input = document.createElement('input');
+            date_input.type = 'hidden';
+            date_input.name = `row${week}date`;
+            date_input.value = dates_data.values[week+ toAdd][0];
+            date_span.className = 'smallText';
+            date_span.innerHTML = 'Date selected: ' + dates_data.values[week+ toAdd][0];
+            div_week.appendChild(date_span);
+            div_week.appendChild(date_input);
+            var clear_button = document.createElement('button');
+            clear_button.type = 'button';
+            clear_button.setAttribute("onclick",`clearRow(${week})`);
+            clear_button.innerHTML = 'Clear';
+            div_week.appendChild(clear_button);
+            for (y = 0; y < products_data.values.length; y++) {
+              var span_title = document.createElement('span');
+              span_title.className = 'smallText';
+              if (products_data.values[y][1] == 'Pizza') {
+                var title_innerHTML = `Slices ${products_data.values[i][0]} Pizza`;
+                var radio_btn_container = document.createElement('div');
+                for (i = 1; i < 4; i ++) {
+                  var radio_btn = document.createElement('input');
+                  radio_btn.type = 'radio';
+                  radio_btn.className = `radioPizzaMenu${week}${y}`;
+                  radio_btn.onclick = `setValue('row${week}col${y}', Number('${i}'))`;
+                  var span = document.createElement('span');
+                  span.className = 'smallText';
+                  span.innerHTML = i.toString();
+                  radio_btn_container.appendChild(radio_btn);
+                  radio_btn_container.appendChild(span);
+                  radio_btn_container.appendChild(document.createElement('br'));
+                }
+                var other = document.createElement('input');
+                other.type = 'radio';
+                other.className = `radioPizzaMenu${week}${y}`;
+                other.onclick = `displayValue('row${week}col${y}')`;
+                radio_btn_container.appendChild(other);
+                var other_label = document.createElement('span');
+                other_label.className = 'smallText';
+                other_label.innerHTML = 'Other';
+                radio_btn_container.appendChild(other_label);
+                var value = document.createElement('input');
+                value.onchange = function() {setTotalSoFar()};
+                value.type = 'number';
+                value.value = 0;
+                value.min = 0;
+                value.className = `row${week}`;
+                value.name = `row${week}col${y}`;
+                value.id = `row${week}col${y}`;
+                value.style = `display:hidden`;
+                radio_btn_container.appendChild(value);
+                var item_innerHTML = radio_btn_container
+              }
+              else {
+                var title_innerHTML = products_data.values[i][0];
+                var checkbox = document.createElement('input');
+                checkbox.onchange = function() {setTotalSoFar()};
+                checkbox.type = 'checkbox';
+                checkbox.className = 'lCheck';
+                checkbox.className = `row${week}`
+                checkbox.name = `row${week}col${y}`;
+                checkbox.id = `row${week}col${y}`;
+                var item_innerHTML = checkbox;
+              }
+              span_title.innerHTML = title_innerHTML;
+              var span_price = document.createElement('span');
+              span_price.className = 'smallText';
+              span_price.innerHTML = products_data.values[i][4];
+              span_price.id = `priceCol${i}`;
+              div_week.appendChild(item_innerHTML);
+            }
+            weeks_div.appendChild(div_week);
+          }
+          form.appendChild(weeks_div);
+          var num_weeks = week;
+        }
         var email_input = document.createElement('input');
         email_input.type = 'hidden';
         email_input.id = 'emailInput';
@@ -282,7 +382,7 @@ function addFormToPage(email_val, sessionTimeout) {
         var number_of_weeks = document.createElement('input');
         number_of_weeks.type = 'hidden';
         number_of_weeks.name = 'number_of_weeks';
-        number_of_weeks.value = table.rows.length - 2;
+        number_of_weeks.value = num_weeks;
         form.appendChild(number_of_weeks);
         var number_of_products = document.createElement('input');
         number_of_products.type = 'hidden';
@@ -311,22 +411,45 @@ function addFormToPage(email_val, sessionTimeout) {
         form.appendChild(double_check);
         form.appendChild(document.createElement('br'));
         form.appendChild(document.createElement('br'));
-        var submitAndContinueShopping = document.createElement('button');
-        submitAndContinueShopping.className = 'pizzaFormButton';
-        submitAndContinueShopping.value = 'submit';
-        submitAndContinueShopping.disabled = 'disabled';
-        submitAndContinueShopping.innerHTML = 'Submit and Continue Shopping';
-        submitAndContinueShopping.id = 'continueShopping';
-        submitAndContinueShopping.setAttribute("onclick", `prepForReturn(false, ${sessionTimeout})`);
-        form.appendChild(submitAndContinueShopping);
-        var submitAndPay = document.createElement('button');
-        submitAndPay.className = 'pizzaFormButton';
-        submitAndPay.value = 'submit';
-        submitAndPay.disabled = 'disabled';
-        submitAndPay.setAttribute("onclick", `prepForReturn(true, ${sessionTimeout})`);
-        submitAndPay.id = 'submitAndPay';
-        submitAndPay.innerHTML = 'Submit and Pay';
-        form.appendChild(submitAndPay);
+        if (mobile !== true) {
+          var submitAndContinueShopping = document.createElement('button');
+          submitAndContinueShopping.className = 'pizzaFormButton';
+          submitAndContinueShopping.value = 'submit';
+          submitAndContinueShopping.disabled = 'disabled';
+          submitAndContinueShopping.innerHTML = 'Submit and Continue Shopping';
+          submitAndContinueShopping.id = 'continueShopping';
+          submitAndContinueShopping.setAttribute("onclick", `prepForReturn(false, ${sessionTimeout})`);
+          form.appendChild(submitAndContinueShopping);
+          var submitAndPay = document.createElement('button');
+          submitAndPay.className = 'pizzaFormButton';
+          submitAndPay.value = 'submit';
+          submitAndPay.disabled = 'disabled';
+          submitAndPay.setAttribute("onclick", `prepForReturn(true, ${sessionTimeout})`);
+          submitAndPay.id = 'submitAndPay';
+          submitAndPay.innerHTML = 'Submit and Pay';
+          form.appendChild(submitAndPay);
+        }
+        else {
+          var label = document.createElement('span');
+          label.className = 'smallText';
+          label.innerHTML = `More Orders?`;
+          var submitAndContinueShopping = document.createElement('button');
+          submitAndContinueShopping.className = 'pizzaFormButton';
+          submitAndContinueShopping.value = 'submit';
+          submitAndContinueShopping.disabled = 'disabled';
+          submitAndContinueShopping.innerHTML = '+';
+          submitAndContinueShopping.id = 'continueShopping';
+          submitAndContinueShopping.setAttribute("onclick", `prepForReturn(false, ${sessionTimeout})`);
+          form.appendChild(submitAndContinueShopping);
+          var submitAndPay = document.createElement('button');
+          submitAndPay.className = 'pizzaFormButton';
+          submitAndPay.value = 'submit';
+          submitAndPay.disabled = 'disabled';
+          submitAndPay.setAttribute("onclick", `prepForReturn(true, ${sessionTimeout})`);
+          submitAndPay.id = 'submitAndPay';
+          submitAndPay.innerHTML = '<img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" border="0" alt="PayPal Logo">';
+          form.appendChild(submitAndPay);
+        }
         document.getElementById('googleFormHolder').innerHTML = ``;
         document.getElementById('googleFormHolder').appendChild(form);
         clearTimeout(timeout);
@@ -335,10 +458,22 @@ function addFormToPage(email_val, sessionTimeout) {
   });
 }
 
+function setValue(id, value) {
+  document.getElementById(id).value = value;
+}
+
+function displayValue(id) {
+  var element = document.getElementById(id);
+  var parent = element.parentElement;
+  parent.innerHTML = '';
+  parent.appendChild(element);
+  document.getElementById(id).style = 'display:inline';
+}
+
 function prepForReturn(pay, sessionTimeout) {
   clearTimeout(sessionTimeout);
   if (pay == true) {
-    setCookie('payOnReturn', true, 1);
+    setCookie('payOnReturn', true, 5);
   }
   findPrice();
   var form_holder = document.getElementById('googleFormHolder');
@@ -431,7 +566,7 @@ function findPrice() {
     var prevPrice = 0.0;
   }
   var newPrice = Number(price);
-  setCookie("price", newPrice+prevPrice, 5);
+  setCookie("price", newPrice+prevPrice, 10);
   document.getElementById('totalForThisOrder').value = newPrice;
 }
 
@@ -458,19 +593,25 @@ function getCookie(cname) {
   return undefined;
 }
 
-function checkCookie() {
+function checkCookie(mobile) {
   var email_val = getCookie("email");
   if (email_val !== undefined && email_val !== null) {
-    loadForm(email_val);
+    loadForm(email_val, mobile);
     return;
   }
   var prev_email_val = getCookie('prevEmail');
   if (prev_email_val !== undefined && prev_email_val !== null) {
     document.getElementById('emailcached').value = prev_email_val;
+    if (mobile === 'mobile') {
+      document.getElementById('emailView').innerHTML = prev_email_val;
+    }
   }
 }
 
-function loadForm(email_val, mobile) {
+function loadForm(email_val, mobile_str) {
+  if (mobile_str == "mobile") {
+    var mobile = true;
+  }
   var form_holder = document.getElementById('googleFormHolder');
   form_holder.innerHTML = ``;
   var loading_container_div = document.createElement('div');
@@ -479,33 +620,31 @@ function loadForm(email_val, mobile) {
   loading_div.className = 'loader';
   loading_container_div.appendChild(loading_div);
   form_holder.appendChild(loading_container_div);
-  gapi.load('client', function() {
-    if (getCookie('payOnReturn') !== undefined && getCookie('payOnReturn') !== null) {
-      window.open('payment.html','_top');
-    }
-    if (checkEmailInvoice(email_val)) {
-      var checked = true;
-    }
-    else {
-      checkIfGapiLoaded(email_val);
-    }
-  });
+  if (getCookie('payOnReturn') !== undefined && getCookie('payOnReturn') !== null) {
+    window.open('payment.html','_top');
+  }
+  if (checkEmailInvoice(email_val)) {
+    var checked = true;
+  }
+  else {
+    checkIfGapiLoaded(email_val, undefined, mobile);
+  }
 }
 
-function checkIfGapiLoaded(email_val, timeout) {
+function checkIfGapiLoaded(email_val, timeout, mobile) {
   if (timeout === undefined) {
     var timeout = setTimeout(pageLoadError, 10000);
   }
   if (gapi.client.sheets !== undefined) {
     clearTimeout(timeout);
-    setCookie("email", email_val, 5);
+    setCookie("email", email_val, 15);
     setCookie("prevEmail", email_val, 365*24*60);
     var sessionTimeout = setTimeout(sessionExpired, 5*60*1000);
     console.log('Email val: ' + email_val);
-    addFormToPage(email_val, sessionTimeout);
+    addFormToPage(email_val, sessionTimeout, mobile);
   }
   else {
-    setTimeout(checkIfGapiLoaded, 1000, email_val, timeout);
+    setTimeout(checkIfGapiLoaded, 1000, email_val, timeout, mobile);
   }
 }
 
