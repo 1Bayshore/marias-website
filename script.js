@@ -609,6 +609,10 @@ function checkCookie(mobile) {
 }
 
 function loadForm(email_val, mobile_str) {
+  if (email_val == undefined || email_val == null || email_val == '') {
+    document.getElementById('enterEmailText').style = 'display:inline';
+    return false;
+  }
   if (mobile_str == "mobile") {
     var mobile = true;
   }

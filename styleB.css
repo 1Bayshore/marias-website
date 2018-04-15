@@ -113,6 +113,13 @@ button:hover:enabled {
   color: solid black;
 }
 
+.incorrectResponseText {
+  display: none;
+  color: red;
+  font-family: "Goudy Old Style", serif;
+  font-size: 12px;
+}
+
 .lCheck {
   font-size: 75px;
 }
